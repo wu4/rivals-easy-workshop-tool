@@ -22,16 +22,16 @@ namespace workshop_forms
     {
       InitializeComponent();
 
-      dt = new Dictionary<String, DateTime>();
+      dt = new Dictionary<string, DateTime>();
 
-      labels = new List<(Button, TextBox)> {
-        (attackDirButton,    attackDirTextBox),
-        (spriteDirButton,    spriteDirTextBox),
-        (characterDirButton, characterDirTextBox),
-        (asepriteDirButton,  asepriteDirTextBox)
+      labels = new List<(Button, TextBox, string)> {
+        (attackDirButton,    attackDirTextBox, "Choose attacks directory..."),
+        (spriteDirButton,    spriteDirTextBox, "Choose sprites directory..."),
+        (characterDirButton, characterDirTextBox, "Choose Workshop character directory..."),
+        (asepriteDirButton,  asepriteDirTextBox, "Choose Aseprite directory...")
       };
 
-      foreach ((Button b, TextBox tb) in labels) {
+      foreach ((Button b, TextBox tb, string l) in labels) {
         /*
         rtb.ContentsResized += ResizeRTBToContents;
         rtb.Rtf = "{\\rtf1\\ansi " + rtb.Text + "}";
@@ -39,7 +39,7 @@ namespace workshop_forms
         rtb.MouseDown += focusTB;
         rtb.MouseUp += focusTB;
         */
-        b.Click += (object o, EventArgs e) => PickDirToTextBox(tb);
+        b.Click += (object o, EventArgs e) => PickDirToTextBox(tb, l);
         // void focusTB(object o, MouseEventArgs e) => ActiveControl = tb;
         tb.TextChanged += UpdateWatchButton;
       }
@@ -54,6 +54,9 @@ namespace workshop_forms
       spriteDirSearchCheckBox.CheckedChanged += (object o, EventArgs e) =>
         spriteDirButton.Enabled =
         spriteDirTextBox.Enabled =
+        asepriteLabel.Enabled =
+        asepriteDirButton.Enabled =
+        asepriteDirTextBox.Enabled =
         spriteHurtboxCheckBox.Enabled =
         spriteHurtboxLabel.Enabled =
           spriteDirSearchCheckBox.Checked;
@@ -69,6 +72,9 @@ namespace workshop_forms
 
       InitWatcher(out atkWatcher, "*.atk", AtkFileChanged);
       InitWatcher(out spriteWatcher, "*.aseprite", SpriteFileChanged);
+
+      DeleteStatusBarText(new object(), new EventArgs());
+      UpdateWatchButton(new object(), new EventArgs());
     }
 
     private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -81,7 +87,7 @@ namespace workshop_forms
       Properties.Settings.Default.Save();
     }
 
-    private readonly List<(Button, TextBox)> labels;
+    private readonly List<(Button, TextBox, string)> labels;
     private readonly CommonOpenFileDialog fd;
 
     private readonly FileSystemWatcher atkWatcher;
@@ -129,12 +135,6 @@ namespace workshop_forms
       }
     }
 
-    private void ToolStripItem_UpdateStatusBarText(object o, EventArgs e)
-    {
-      var c = (ToolStripItem)o;
-      UpdateStatusBarText(c.Tag.ToString());
-    }
-
     private void UpdateStatusBarText(String s)
     {
       if (s.Length > 0) {
@@ -157,9 +157,10 @@ namespace workshop_forms
       }
     }
 
-    private void PickDirToTextBox(TextBox tb)
+    private void PickDirToTextBox(TextBox tb, string title)
     {
       fd.InitialDirectory = tb.Text;
+      fd.Title = title;
       if (fd.ShowDialog() == CommonFileDialogResult.Ok) {
         tb.Text = fd.FileName;
         // tb.Select(tb.Text.Length, 0);

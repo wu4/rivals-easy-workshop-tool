@@ -60,8 +60,6 @@ namespace workshop_forms
 
       public string ToGML()
       {
-        atk_vals.Append(AsGML(G_ATTACK_SPRITE, "AG_SPRITE", atk_name_orig));
-        atk_vals.Append(AsGML(G_ATTACK_SPRITE, "AG_HURTBOX_SPRITE", $"{atk_name_orig}_hurt"));
 
         foreach (AtkFileParsing.Hitbox h in atk.Hitboxes) {
           hbx_count++;
@@ -76,9 +74,9 @@ namespace workshop_forms
         foreach (KeyValuePair<string, string> entry in atk.Values) {
           atk_vals.Append(AsGML(G_ATTACK, entry.Key, entry.Value));
         }
-        if (!atk.Values.ContainsKey("AG_NUM_WINDOWS")) {
-          atk_vals.Append(AsGML(G_ATTACK, "AG_NUM_WINDOWS", win_count.ToString()));
-        }
+        if (!atk.Values.ContainsKey("AG_SPRITE")) atk_vals.Append(AsGML(G_ATTACK_SPRITE, "AG_SPRITE", atk_name_orig));
+        if (!atk.Values.ContainsKey("AG_HURTBOX_SPRITE")) atk_vals.Append(AsGML(G_ATTACK_SPRITE, "AG_HURTBOX_SPRITE", $"{atk_name_orig}_hurt"));
+        if (!atk.Values.ContainsKey("AG_NUM_WINDOWS")) atk_vals.Append(AsGML(G_ATTACK, "AG_NUM_WINDOWS", win_count.ToString()));
         atk_vals.Append($"set_num_hitboxes({atk_name}, {hbx_count});\n");
 
         return atk_vals.Append(
