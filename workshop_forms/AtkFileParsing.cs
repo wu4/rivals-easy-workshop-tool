@@ -273,8 +273,10 @@ namespace workshop_forms
             if (!successful_token) throw new ParserException(FormatException($"invalid token at '{line}'"));
           }
         }
-        ProcessDedents();
         if (inCommentBlock) throw new ParserException(FormatException("unterminated block comment"));
+
+        lineIndent = 0;
+        ProcessDedents();
 
         return curAtk;
       }

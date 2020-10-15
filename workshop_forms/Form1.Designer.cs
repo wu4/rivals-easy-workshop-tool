@@ -494,7 +494,7 @@
       this.MinimumSize = new System.Drawing.Size(500, 400);
       this.Name = "Form1";
       this.Padding = new System.Windows.Forms.Padding(5);
-      this.Text = "Rivals Workshop Tool";
+      this.Text = "Rivals Easy Workshop Tool";
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer_main)).EndInit();
       this.splitContainer_main.ResumeLayout(false);
