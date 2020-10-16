@@ -13,6 +13,7 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Channels;
 using System.Threading;
+using System.Diagnostics;
 
 namespace workshop_forms
 {
@@ -60,6 +61,13 @@ namespace workshop_forms
         spriteHurtboxCheckBox.Enabled =
         spriteHurtboxLabel.Enabled =
           spriteDirSearchCheckBox.Checked;
+
+      spriteDirTextBox.TextChanged += UpdateWatchButton;
+      spriteDirTextBox.TextChanged += DeleteStatusBarText;
+      asepriteDirTextBox.TextChanged += UpdateWatchButton;
+      asepriteDirTextBox.TextChanged += DeleteStatusBarText;
+      attackDirTextBox.TextChanged += UpdateWatchButton;
+      attackDirTextBox.TextChanged += DeleteStatusBarText;
 
       // attackDirTextBox.Text = Properties.Settings.Default.attacksDir;
       // spriteDirTextBox.Text = Properties.Settings.Default.spritesDir;
@@ -110,13 +118,28 @@ namespace workshop_forms
     }
 
     private bool currentlyWatching = false;
-    
+
     private bool CanStartWatching() =>
       (
-        (attackDirSearchCheckBox.Checked && Directory.Exists(labels[0].Item2.Text)) ||
-        (spriteDirSearchCheckBox.Checked && Directory.Exists(labels[1].Item2.Text))
+        (
+          attackDirSearchCheckBox.Checked
+          && Directory.Exists(Properties.Settings.Default.attacksDir)
+        )
+        ||
+        (
+          spriteDirSearchCheckBox.Checked
+          && Directory.Exists(Properties.Settings.Default.spritesDir)
+          && Directory.Exists(Properties.Settings.Default.asepriteDir)
+          && File.Exists(Path.Combine(Properties.Settings.Default.asepriteDir, "aseprite.exe"))
+        )
       )
-      && Directory.Exists(labels[2].Item2.Text);
+      &&
+      (
+        Directory.Exists(Properties.Settings.Default.characterDir)
+        && Directory.Exists(Path.Combine(Properties.Settings.Default.characterDir, "scripts/attacks"))
+        && Directory.Exists(Path.Combine(Properties.Settings.Default.characterDir, "sprites"))
+      );
+
 
     private void UpdateWatchButton(object o, EventArgs e)
     {
@@ -148,13 +171,52 @@ namespace workshop_forms
       UpdateStatusBarText(c.Tag.ToString());
     }
 
+    private void ToolStripItem_UpdateStatusBarText(object o, EventArgs e)
+    {
+      var c = (ToolStripItem)o;
+      UpdateStatusBarText(c.Tag.ToString());
+    }
+
     private void DeleteStatusBarText(object o, EventArgs e)
     {
-      if (CanStartWatching()) {
-        statusLabel.Text = "";
-      } else {
-        statusLabel.Text = "A directory is not valid or no directories are checked to watch.";
+      // this is a yanderedev moment
+      if (attackDirSearchCheckBox.Checked) {
+        if (!Directory.Exists(Properties.Settings.Default.attacksDir)) {
+          statusLabel.Text = "Attacks directory does not exist.";
+          return;
+        }
       }
+      if (spriteDirSearchCheckBox.Checked) {
+        if (!Directory.Exists(Properties.Settings.Default.spritesDir)) {
+          statusLabel.Text = "Sprites directory does not exist.";
+          return;
+        }
+        if (!Directory.Exists(Properties.Settings.Default.asepriteDir)) {
+          statusLabel.Text = "Aseprite directory does not exist.";
+          return;
+        }
+        if (!File.Exists(Path.Combine(Properties.Settings.Default.asepriteDir, "aseprite.exe"))) {
+          statusLabel.Text = "aseprite.exe does not exist.";
+          return;
+        }
+      }
+      if (!(attackDirSearchCheckBox.Checked || spriteDirSearchCheckBox.Checked)) {
+        statusLabel.Text = "Neither directory is checked for searching.";
+        return;
+      }
+      if (!Directory.Exists(Properties.Settings.Default.characterDir)) {
+        statusLabel.Text = "Workshop character directory does not exist.";
+        return;
+      }
+      if (!Directory.Exists(Path.Combine(Properties.Settings.Default.characterDir, "scripts/attacks"))) {
+        statusLabel.Text = "Workshop character attacks directory does not exist.";
+        return;
+      }
+      if (!Directory.Exists(Path.Combine(Properties.Settings.Default.characterDir, "sprites"))) {
+        statusLabel.Text = "Workshop character sprites directory does not exist.";
+        return;
+      }
+      statusLabel.Text = "";
     }
 
     private void PickDirToTextBox(TextBox tb, string title)
@@ -240,6 +302,11 @@ namespace workshop_forms
           spriteWatcher.EnableRaisingEvents = true;
         }
       }
+    }
+
+    private void wikiButton_Click(object sender, EventArgs e)
+    {
+      Process.Start("https://github.com/wu4/rivals-easy-workshop-tool/wiki");
     }
   }
 }
