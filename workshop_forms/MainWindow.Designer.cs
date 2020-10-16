@@ -478,6 +478,7 @@
       this.updateButton.Tag = "Perform a one-time check for changes by comparing write-times.";
       this.updateButton.Text = "Update";
       this.updateButton.UseVisualStyleBackColor = true;
+      this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
       this.updateButton.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
       this.updateButton.Leave += new System.EventHandler(this.DeleteStatusBarText);
       this.updateButton.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);

@@ -29,6 +29,7 @@ namespace workshop_forms
         Arguments =
           $"-b " +
           $"{filenameArgs} " +
+          $"--script-param sprite_hurtboxes={(Properties.Settings.Default.spritesHurtboxGeneration ? 1 : 0)} " +
           $"--script-param sprite_count={filenameCount} " +
           $"--script-param sprite_out_path=\"{EscapePath(Properties.Settings.Default.characterDir)}/sprites\" " +
           $"--script \"{EscapePath(AppDomain.CurrentDomain.BaseDirectory)}strip_export.lua\"",

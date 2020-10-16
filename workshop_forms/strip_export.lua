@@ -72,7 +72,7 @@ for i,sprite in ipairs(app.sprites) do
 
   print("Strip saved:\n" .. stripOutName)
 
-  if not in_table(hurtbox_blacklist, app.fs.fileTitle(sprite.filename)) then
+  if (tonumber(app.params["sprite_hurtboxes"]) == 1) and not in_table(hurtbox_blacklist, app.fs.fileTitle(sprite.filename)) then
     for i, layer in ipairs(sprite.layers) do
       if not (layer.isGroup and layer.name == "hurtbox") then
         sprite:deleteLayer(layer)

@@ -81,6 +81,9 @@
   <ItemGroup>
     <Compile Include="AtkFileParsing.cs" />
     <Compile Include="AttackToGML.cs" />
+    <Compile Include="FileOps.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ConvertAseprite.cs" />
     <Compile Include="ConvertAtk.cs" />
     <Compile Include="MainWindow.cs">

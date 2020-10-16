@@ -144,13 +144,13 @@ namespace workshop_forms
     private void UpdateWatchButton(object o, EventArgs e)
     {
       if (CanStartWatching()) {
-        watchButton.Enabled = true;
+        watchButton.Enabled = updateButton.Enabled = true;
         warningLabel.Visible = false;
         statusBarTable.SetColumnSpan(statusLabel, 2);
         statusBarTable.SetColumn(statusLabel, 0);
         // statusLabel.DisplayStyle = ToolStripItemDisplayStyle.Text;
       } else {
-        watchButton.Enabled = false;
+        watchButton.Enabled = updateButton.Enabled = false;
         warningLabel.Visible = true;
         statusBarTable.SetColumnSpan(statusLabel, 1);
         statusBarTable.SetColumn(statusLabel, 1);
@@ -260,6 +260,7 @@ namespace workshop_forms
         consoleTextBox.Invoke((Action)delegate {
           //consoleTextBox.AppendText($"{e.FullPath}\n");
           consoleTextBox.AppendText($"Converting {e.Name}...\n");
+          RemoveOldSprites(Path.GetFileNameWithoutExtension(e.Name));
           consoleTextBox.AppendText($"{Convert.Aseprite(new List<string> {e.FullPath})}");
           consoleTextBox.SelectionStart = consoleTextBox.Text.Length;
           consoleTextBox.ScrollToCaret();
@@ -275,6 +276,7 @@ namespace workshop_forms
       if (currentlyWatching) {
         currentlyWatching = false;
         tabPageOptions.Enabled = true;
+        updateButton.Enabled = true;
 
         watchButton.Text = "Watch";
         watchButton.Tag = "Begin watching the enabled directories for changes.";
@@ -284,8 +286,10 @@ namespace workshop_forms
         atkWatcher.EnableRaisingEvents = false;
         spriteWatcher.EnableRaisingEvents = false;
       } else {
+        tabControl.SelectedIndex = 1;
         currentlyWatching = true;
         tabPageOptions.Enabled = false;
+        updateButton.Enabled = false;
 
         watchButton.Text = "Stop Watching";
         watchButton.Tag = "Stop watching.";
@@ -304,6 +308,30 @@ namespace workshop_forms
       }
     }
 
+    private void updateButton_Click(object sender, EventArgs e)
+    {
+      tabControl.SelectedIndex = 1;
+      List<string> sprites = Properties.Settings.Default.spritesDirSearch
+                           ? SpritesToUpdate()
+                           : new List<string>();
+      List<string> atks = Properties.Settings.Default.attacksDirSearch
+                        ? AtksToUpdate()
+                        : new List<string>();
+      if (sprites.Count > 0) {
+        consoleTextBox.AppendText($"Converting {string.Join(", ", from s in sprites select Path.GetFileName(s))}...\n");
+        consoleTextBox.AppendText($"{Convert.Aseprite(sprites)}");
+      }
+      if (atks.Count > 0) {
+        consoleTextBox.AppendText($"Converting {string.Join(", ", from a in atks select Path.GetFileName(a))}...\n");
+        consoleTextBox.AppendText($"{Convert.Atk(atks)}");
+      }
+      if (sprites.Count == 0 && atks.Count == 0) {
+        consoleTextBox.AppendText("Nothing to do.\n");
+      }
+      consoleTextBox.SelectionStart = consoleTextBox.Text.Length;
+      consoleTextBox.ScrollToCaret();
+    }
+
     private void wikiButton_Click(object sender, EventArgs e)
     {
       Process.Start("https://github.com/wu4/rivals-easy-workshop-tool/wiki");
@@ -312,8 +340,6 @@ namespace workshop_forms
     private void aboutButton_Click(object sender, EventArgs e)
     {
       var a = new AboutWindow();
-      //a.Parent = Application.OpenForms[0];
-      //a.StartPosition = FormStartPosition.CenterParent;
       a.ShowDialog();
     }
   }
