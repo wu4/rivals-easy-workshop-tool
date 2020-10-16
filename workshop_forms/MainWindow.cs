@@ -378,7 +378,7 @@ namespace workshop_forms
       string t = attackDirTextBox.Text;
       if (!Directory.Exists(t)) {
         e.Cancel = true;
-        attackDirTextBoxError.SetError(attackLabel, "Attacks directory does not exist.");
+        attackDirTextBoxError.SetError(attackLabel, "Attacks directory does not exist or is not set.");
       } else {
         attackDirTextBoxError.SetError(attackLabel, String.Empty);
       }
@@ -389,7 +389,7 @@ namespace workshop_forms
       string t = spriteDirTextBox.Text;
       if (!Directory.Exists(t)) {
         e.Cancel = true;
-        spriteDirTextBoxError.SetError(spriteLabel, "Sprites directory does not exist.");
+        spriteDirTextBoxError.SetError(spriteLabel, "Sprites directory does not exist or is not set.");
       } else {
         spriteDirTextBoxError.SetError(spriteLabel, String.Empty);
       }
@@ -400,7 +400,7 @@ namespace workshop_forms
       string t = asepriteDirTextBox.Text;
       if (!Directory.Exists(t)) {
         e.Cancel = true;
-        asepriteDirTextBoxError.SetError(asepriteLabel, "Aseprite directory does not exist.");
+        asepriteDirTextBoxError.SetError(asepriteLabel, "Aseprite directory does not exist or is not set.");
       } else if (!File.Exists(Path.Combine(t, "aseprite.exe"))) {
         e.Cancel = true;
         asepriteDirTextBoxError.SetError(asepriteLabel, "aseprite.exe does not exist.");
@@ -414,13 +414,13 @@ namespace workshop_forms
       string t = characterDirTextBox.Text;
       if (!Directory.Exists(t)) {
         e.Cancel = true;
-        characterDirTextBoxError.SetError(characterLabel, "Workshop character directory does not exist.");
+        characterDirTextBoxError.SetError(characterLabel, "Workshop character directory does not exist or is not set.");
       } else if (!Directory.Exists(Path.Combine(t, "scripts/attacks"))) {
         e.Cancel = true;
-        characterDirTextBoxError.SetError(characterLabel, "Workshop character attacks directory does not exist.");
+        characterDirTextBoxError.SetError(characterLabel, "Workshop character attacks subdirectory does not exist.");
       } else if (!Directory.Exists(Path.Combine(t, "sprites"))) {
         e.Cancel = true;
-        characterDirTextBoxError.SetError(characterLabel, "Workshop character sprites directory does not exist.");
+        characterDirTextBoxError.SetError(characterLabel, "Workshop character sprites subdirectory does not exist.");
       } else {
         characterDirTextBoxError.SetError(characterLabel, String.Empty);
       }

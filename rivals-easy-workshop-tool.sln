@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rivals-easy-workshop-tool", "workshop_forms\rivals-easy-workshop-tool.csproj", "{16B43BA6-1E10-4056-9F1D-B3C32C520B66}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "rewt-install-wizard", "rewt-install-wizard\rewt-install-wizard.vdproj", "{83587BAF-ADF5-4C88-85CB-C242EEC6A720}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "rewt-wizard", "rewt-wizard\rewt-wizard.vdproj", "{025C59E4-24CE-4180-B5F6-78002D044E8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,11 @@ Global
 		{16B43BA6-1E10-4056-9F1D-B3C32C520B66}.Release|Any CPU.Build.0 = Release|Any CPU
 		{16B43BA6-1E10-4056-9F1D-B3C32C520B66}.Release|x86.ActiveCfg = Release|Any CPU
 		{16B43BA6-1E10-4056-9F1D-B3C32C520B66}.Release|x86.Build.0 = Release|Any CPU
-		{83587BAF-ADF5-4C88-85CB-C242EEC6A720}.Debug|Any CPU.ActiveCfg = Debug
-		{83587BAF-ADF5-4C88-85CB-C242EEC6A720}.Debug|x86.ActiveCfg = Debug
-		{83587BAF-ADF5-4C88-85CB-C242EEC6A720}.Release|Any CPU.ActiveCfg = Release
-		{83587BAF-ADF5-4C88-85CB-C242EEC6A720}.Release|x86.ActiveCfg = Release
+		{025C59E4-24CE-4180-B5F6-78002D044E8F}.Debug|Any CPU.ActiveCfg = Debug
+		{025C59E4-24CE-4180-B5F6-78002D044E8F}.Debug|x86.ActiveCfg = Debug
+		{025C59E4-24CE-4180-B5F6-78002D044E8F}.Release|Any CPU.ActiveCfg = Release
+		{025C59E4-24CE-4180-B5F6-78002D044E8F}.Release|Any CPU.Build.0 = Release
+		{025C59E4-24CE-4180-B5F6-78002D044E8F}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
