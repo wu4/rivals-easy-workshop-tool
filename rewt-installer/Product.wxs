@@ -28,11 +28,9 @@
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 			<Component Id="MainExecutable" Guid="a2fb592a-d246-4b15-b7b2-bf4fc5c0c288">
 				<File Source="$(var.rivals-easy-workshop-tool.TargetPath)" />
-				<!-- TODO: Insert files, registry keys, and other resources here. -->
 			</Component>
       <Component Id="SpriteEditorLua" Guid="096c03b2-04e9-4277-a720-4e8fb3022bca">
         <File Source="$(var.rivals-easy-workshop-tool.TargetDir)/strip_export.lua" />
-        <!-- TODO: Insert files, registry keys, and other resources here. -->
       </Component>
 		</ComponentGroup>
 	</Fragment>
