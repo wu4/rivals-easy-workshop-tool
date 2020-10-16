@@ -1,6 +1,6 @@
 ﻿namespace workshop_forms
 {
-  partial class Form1
+  partial class MainWindow
   {
     /// <summary>
     /// Required designer variable.
@@ -29,7 +29,7 @@
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
       this.dirPicker = new System.Windows.Forms.FolderBrowserDialog();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
@@ -62,8 +62,8 @@
       this.watchButton = new System.Windows.Forms.Button();
       this.statusLabel = new System.Windows.Forms.Label();
       this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+      this.aboutButton = new System.Windows.Forms.ToolStripButton();
       this.wikiButton = new System.Windows.Forms.ToolStripButton();
-      this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer_main)).BeginInit();
       this.splitContainer_main.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -113,7 +113,7 @@
       this.consoleTextBox.Name = "consoleTextBox";
       this.consoleTextBox.ReadOnly = true;
       this.consoleTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-      this.consoleTextBox.Size = new System.Drawing.Size(460, 286);
+      this.consoleTextBox.Size = new System.Drawing.Size(470, 266);
       this.consoleTextBox.TabIndex = 5;
       this.consoleTextBox.Text = "";
       // 
@@ -138,7 +138,7 @@
       this.splitContainer1.Size = new System.Drawing.Size(484, 336);
       this.splitContainer1.SplitterDistance = 298;
       this.splitContainer1.SplitterWidth = 1;
-      this.splitContainer1.TabIndex = 17;
+      this.splitContainer1.TabIndex = 0;
       this.splitContainer1.TabStop = false;
       // 
       // tabControl
@@ -151,7 +151,7 @@
       this.tabControl.Name = "tabControl";
       this.tabControl.SelectedIndex = 0;
       this.tabControl.Size = new System.Drawing.Size(484, 298);
-      this.tabControl.TabIndex = 14;
+      this.tabControl.TabIndex = 0;
       // 
       // tabPageOptions
       // 
@@ -203,7 +203,7 @@
       this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableLayoutPanel2.Size = new System.Drawing.Size(470, 266);
-      this.tableLayoutPanel2.TabIndex = 14;
+      this.tableLayoutPanel2.TabIndex = 0;
       // 
       // asepriteDirButton
       // 
@@ -213,7 +213,7 @@
       this.asepriteDirButton.Margin = new System.Windows.Forms.Padding(0);
       this.asepriteDirButton.Name = "asepriteDirButton";
       this.asepriteDirButton.Size = new System.Drawing.Size(25, 25);
-      this.asepriteDirButton.TabIndex = 24;
+      this.asepriteDirButton.TabIndex = 9;
       this.asepriteDirButton.UseVisualStyleBackColor = true;
       // 
       // attackDirSearchCheckBox
@@ -232,6 +232,8 @@
       this.attackDirSearchCheckBox.Tag = "Whether or not to watch for, and transpile, *.atk files.";
       this.attackDirSearchCheckBox.Text = "checkBox1";
       this.attackDirSearchCheckBox.UseVisualStyleBackColor = true;
+      this.attackDirSearchCheckBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.attackDirSearchCheckBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
       this.attackDirSearchCheckBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
       this.attackDirSearchCheckBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
       // 
@@ -246,6 +248,8 @@
       this.attackDirTextBox.TabIndex = 2;
       this.attackDirTextBox.Tag = "Directory containing *.atk files to transpile into GML.";
       this.attackDirTextBox.Text = global::workshop_forms.Properties.Settings.Default.attacksDir;
+      this.attackDirTextBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.attackDirTextBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
       this.attackDirTextBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
       this.attackDirTextBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
       // 
@@ -276,6 +280,8 @@
       this.spriteDirSearchCheckBox.Tag = "Whether or not to watch for, and convert, *.aseprite files.";
       this.spriteDirSearchCheckBox.Text = "checkBox2";
       this.spriteDirSearchCheckBox.UseVisualStyleBackColor = true;
+      this.spriteDirSearchCheckBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.spriteDirSearchCheckBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
       this.spriteDirSearchCheckBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
       this.spriteDirSearchCheckBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
       // 
@@ -291,6 +297,8 @@
       this.spriteDirTextBox.Tag = "Directory containing Aseprite sprite files (*.aseprite) to convert into strip fil" +
     "es.";
       this.spriteDirTextBox.Text = global::workshop_forms.Properties.Settings.Default.spritesDir;
+      this.spriteDirTextBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.spriteDirTextBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
       this.spriteDirTextBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
       this.spriteDirTextBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
       // 
@@ -339,10 +347,12 @@
       this.spriteHurtboxCheckBox.Location = new System.Drawing.Point(3, 104);
       this.spriteHurtboxCheckBox.Name = "spriteHurtboxCheckBox";
       this.spriteHurtboxCheckBox.Size = new System.Drawing.Size(14, 17);
-      this.spriteHurtboxCheckBox.TabIndex = 20;
+      this.spriteHurtboxCheckBox.TabIndex = 7;
       this.spriteHurtboxCheckBox.Tag = "Whether or not to generate hurtboxes by using the layer group \"hurtbox\".";
       this.spriteHurtboxCheckBox.Text = "checkBox1";
       this.spriteHurtboxCheckBox.UseVisualStyleBackColor = true;
+      this.spriteHurtboxCheckBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.spriteHurtboxCheckBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
       this.spriteHurtboxCheckBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
       this.spriteHurtboxCheckBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
       // 
@@ -366,10 +376,12 @@
       this.characterDirTextBox.Name = "characterDirTextBox";
       this.characterDirTextBox.ReadOnly = true;
       this.characterDirTextBox.Size = new System.Drawing.Size(439, 20);
-      this.characterDirTextBox.TabIndex = 7;
+      this.characterDirTextBox.TabIndex = 10;
       this.characterDirTextBox.Tag = "The target Workshop character\'s root directory. Contains init.gml, as well as the" +
     " sprites/ and scripts/ subdirectories.";
       this.characterDirTextBox.Text = global::workshop_forms.Properties.Settings.Default.characterDir;
+      this.characterDirTextBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.characterDirTextBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
       this.characterDirTextBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
       this.characterDirTextBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
       // 
@@ -393,7 +405,7 @@
       this.characterDirButton.Margin = new System.Windows.Forms.Padding(0);
       this.characterDirButton.Name = "characterDirButton";
       this.characterDirButton.Size = new System.Drawing.Size(25, 25);
-      this.characterDirButton.TabIndex = 8;
+      this.characterDirButton.TabIndex = 11;
       this.characterDirButton.UseVisualStyleBackColor = true;
       // 
       // asepriteLabel
@@ -415,9 +427,11 @@
       this.asepriteDirTextBox.Name = "asepriteDirTextBox";
       this.asepriteDirTextBox.ReadOnly = true;
       this.asepriteDirTextBox.Size = new System.Drawing.Size(419, 20);
-      this.asepriteDirTextBox.TabIndex = 23;
+      this.asepriteDirTextBox.TabIndex = 8;
       this.asepriteDirTextBox.Tag = "Directory containing aseprite.exe. Usually C:\\Program Files\\Aseprite.";
       this.asepriteDirTextBox.Text = global::workshop_forms.Properties.Settings.Default.asepriteDir;
+      this.asepriteDirTextBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.asepriteDirTextBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
       this.asepriteDirTextBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
       this.asepriteDirTextBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
       // 
@@ -427,7 +441,7 @@
       this.tabPage2.Location = new System.Drawing.Point(4, 22);
       this.tabPage2.Name = "tabPage2";
       this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage2.Size = new System.Drawing.Size(466, 292);
+      this.tabPage2.Size = new System.Drawing.Size(476, 272);
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "Output";
       this.tabPage2.UseVisualStyleBackColor = true;
@@ -460,7 +474,7 @@
       this.updateButton.Margin = new System.Windows.Forms.Padding(0);
       this.updateButton.Name = "updateButton";
       this.updateButton.Size = new System.Drawing.Size(100, 12);
-      this.updateButton.TabIndex = 25;
+      this.updateButton.TabIndex = 12;
       this.updateButton.Tag = "Perform a one-time check for changes by comparing write-times.";
       this.updateButton.Text = "Update";
       this.updateButton.UseVisualStyleBackColor = true;
@@ -486,8 +500,8 @@
       this.watchButton.Margin = new System.Windows.Forms.Padding(0);
       this.watchButton.Name = "watchButton";
       this.watchButton.Size = new System.Drawing.Size(32, 20);
-      this.watchButton.TabIndex = 0;
-      this.watchButton.Tag = "Begin watching the enabled directories for changes";
+      this.watchButton.TabIndex = 13;
+      this.watchButton.Tag = "Begin watching the enabled directories for changes.";
       this.watchButton.Text = "Watch";
       this.watchButton.UseVisualStyleBackColor = true;
       this.watchButton.Click += new System.EventHandler(this.watchButton_Click);
@@ -513,15 +527,26 @@
       // 
       this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
       this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton2,
+            this.aboutButton,
             this.wikiButton});
       this.toolStrip1.Location = new System.Drawing.Point(0, 0);
       this.toolStrip1.Name = "toolStrip1";
       this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
       this.toolStrip1.ShowItemToolTips = false;
       this.toolStrip1.Size = new System.Drawing.Size(484, 25);
-      this.toolStrip1.TabIndex = 15;
+      this.toolStrip1.TabIndex = 1;
+      this.toolStrip1.TabStop = true;
       this.toolStrip1.Text = "toolStrip1";
+      // 
+      // aboutButton
+      // 
+      this.aboutButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+      this.aboutButton.Image = ((System.Drawing.Image)(resources.GetObject("aboutButton.Image")));
+      this.aboutButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.aboutButton.Name = "aboutButton";
+      this.aboutButton.Size = new System.Drawing.Size(60, 22);
+      this.aboutButton.Text = "About";
+      this.aboutButton.Click += new System.EventHandler(this.aboutButton_Click);
       // 
       // wikiButton
       // 
@@ -538,16 +563,7 @@
       this.wikiButton.MouseEnter += new System.EventHandler(this.ToolStripItem_UpdateStatusBarText);
       this.wikiButton.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
       // 
-      // toolStripButton2
-      // 
-      this.toolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-      this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-      this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolStripButton2.Name = "toolStripButton2";
-      this.toolStripButton2.Size = new System.Drawing.Size(60, 22);
-      this.toolStripButton2.Text = "About";
-      // 
-      // Form1
+      // MainWindow
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -556,7 +572,7 @@
       this.Controls.Add(this.toolStrip1);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.MinimumSize = new System.Drawing.Size(500, 400);
-      this.Name = "Form1";
+      this.Name = "MainWindow";
       this.Text = "Rivals Easy Workshop Tool";
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer_main)).EndInit();
@@ -613,7 +629,7 @@
         private System.Windows.Forms.Button updateButton;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton wikiButton;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton aboutButton;
     }
 }
 

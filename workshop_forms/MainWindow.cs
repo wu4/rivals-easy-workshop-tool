@@ -17,9 +17,9 @@ using System.Diagnostics;
 
 namespace workshop_forms
 {
-  public partial class Form1 : Form
+  public partial class MainWindow : Form
   {
-    public Form1()
+    public MainWindow()
     {
       InitializeComponent();
 
@@ -277,7 +277,7 @@ namespace workshop_forms
         tabPageOptions.Enabled = true;
 
         watchButton.Text = "Watch";
-        watchButton.Tag = "Begin watching the enabled directories.";
+        watchButton.Tag = "Begin watching the enabled directories for changes.";
         // statusBar.Tag = watchButton.Tag;
         Control_UpdateStatusBarText(sender, e);
 
@@ -307,6 +307,14 @@ namespace workshop_forms
     private void wikiButton_Click(object sender, EventArgs e)
     {
       Process.Start("https://github.com/wu4/rivals-easy-workshop-tool/wiki");
+    }
+
+    private void aboutButton_Click(object sender, EventArgs e)
+    {
+      var a = new AboutWindow();
+      //a.Parent = Application.OpenForms[0];
+      //a.StartPosition = FormStartPosition.CenterParent;
+      a.ShowDialog();
     }
   }
 }
