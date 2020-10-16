@@ -38,7 +38,7 @@
       this.splitContainer1 = new System.Windows.Forms.SplitContainer();
       this.tabControl = new System.Windows.Forms.TabControl();
       this.tabPageOptions = new System.Windows.Forms.TabPage();
-      this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+      this.optionsTable = new System.Windows.Forms.TableLayoutPanel();
       this.asepriteDirButton = new System.Windows.Forms.Button();
       this.attackDirSearchCheckBox = new System.Windows.Forms.CheckBox();
       this.attackDirTextBox = new System.Windows.Forms.TextBox();
@@ -46,24 +46,27 @@
       this.spriteDirSearchCheckBox = new System.Windows.Forms.CheckBox();
       this.spriteDirTextBox = new System.Windows.Forms.TextBox();
       this.spriteDirButton = new System.Windows.Forms.Button();
-      this.label1 = new System.Windows.Forms.Label();
-      this.label2 = new System.Windows.Forms.Label();
+      this.attackLabel = new System.Windows.Forms.Label();
+      this.spriteLabel = new System.Windows.Forms.Label();
       this.spriteHurtboxCheckBox = new System.Windows.Forms.CheckBox();
       this.spriteHurtboxLabel = new System.Windows.Forms.Label();
       this.characterDirTextBox = new System.Windows.Forms.TextBox();
-      this.label3 = new System.Windows.Forms.Label();
+      this.characterLabel = new System.Windows.Forms.Label();
       this.characterDirButton = new System.Windows.Forms.Button();
       this.asepriteLabel = new System.Windows.Forms.Label();
       this.asepriteDirTextBox = new System.Windows.Forms.TextBox();
       this.tabPage2 = new System.Windows.Forms.TabPage();
       this.statusBarTable = new System.Windows.Forms.TableLayoutPanel();
       this.updateButton = new System.Windows.Forms.Button();
-      this.warningLabel = new System.Windows.Forms.Label();
       this.watchButton = new System.Windows.Forms.Button();
       this.statusLabel = new System.Windows.Forms.Label();
       this.toolStrip1 = new System.Windows.Forms.ToolStrip();
       this.aboutButton = new System.Windows.Forms.ToolStripButton();
       this.wikiButton = new System.Windows.Forms.ToolStripButton();
+      this.attackDirTextBoxError = new System.Windows.Forms.ErrorProvider(this.components);
+      this.spriteDirTextBoxError = new System.Windows.Forms.ErrorProvider(this.components);
+      this.asepriteDirTextBoxError = new System.Windows.Forms.ErrorProvider(this.components);
+      this.characterDirTextBoxError = new System.Windows.Forms.ErrorProvider(this.components);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer_main)).BeginInit();
       this.splitContainer_main.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -72,10 +75,14 @@
       this.splitContainer1.SuspendLayout();
       this.tabControl.SuspendLayout();
       this.tabPageOptions.SuspendLayout();
-      this.tableLayoutPanel2.SuspendLayout();
+      this.optionsTable.SuspendLayout();
       this.tabPage2.SuspendLayout();
       this.statusBarTable.SuspendLayout();
       this.toolStrip1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.attackDirTextBoxError)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.spriteDirTextBoxError)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.asepriteDirTextBoxError)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.characterDirTextBoxError)).BeginInit();
       this.SuspendLayout();
       // 
       // openFileDialog1
@@ -155,7 +162,7 @@
       // 
       // tabPageOptions
       // 
-      this.tabPageOptions.Controls.Add(this.tableLayoutPanel2);
+      this.tabPageOptions.Controls.Add(this.optionsTable);
       this.tabPageOptions.Location = new System.Drawing.Point(4, 22);
       this.tabPageOptions.Name = "tabPageOptions";
       this.tabPageOptions.Padding = new System.Windows.Forms.Padding(3);
@@ -164,46 +171,46 @@
       this.tabPageOptions.Text = "Options";
       this.tabPageOptions.UseVisualStyleBackColor = true;
       // 
-      // tableLayoutPanel2
+      // optionsTable
       // 
-      this.tableLayoutPanel2.ColumnCount = 3;
-      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-      this.tableLayoutPanel2.Controls.Add(this.asepriteDirButton, 2, 6);
-      this.tableLayoutPanel2.Controls.Add(this.attackDirSearchCheckBox, 0, 1);
-      this.tableLayoutPanel2.Controls.Add(this.attackDirTextBox, 1, 1);
-      this.tableLayoutPanel2.Controls.Add(this.attackDirButton, 2, 1);
-      this.tableLayoutPanel2.Controls.Add(this.spriteDirSearchCheckBox, 0, 3);
-      this.tableLayoutPanel2.Controls.Add(this.spriteDirTextBox, 1, 3);
-      this.tableLayoutPanel2.Controls.Add(this.spriteDirButton, 2, 3);
-      this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-      this.tableLayoutPanel2.Controls.Add(this.label2, 0, 2);
-      this.tableLayoutPanel2.Controls.Add(this.spriteHurtboxCheckBox, 0, 4);
-      this.tableLayoutPanel2.Controls.Add(this.spriteHurtboxLabel, 1, 4);
-      this.tableLayoutPanel2.Controls.Add(this.characterDirTextBox, 0, 8);
-      this.tableLayoutPanel2.Controls.Add(this.label3, 0, 7);
-      this.tableLayoutPanel2.Controls.Add(this.characterDirButton, 2, 8);
-      this.tableLayoutPanel2.Controls.Add(this.asepriteLabel, 1, 5);
-      this.tableLayoutPanel2.Controls.Add(this.asepriteDirTextBox, 1, 6);
-      this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-      this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-      this.tableLayoutPanel2.RowCount = 10;
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableLayoutPanel2.Size = new System.Drawing.Size(470, 266);
-      this.tableLayoutPanel2.TabIndex = 0;
+      this.optionsTable.ColumnCount = 3;
+      this.optionsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.optionsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.optionsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+      this.optionsTable.Controls.Add(this.asepriteDirButton, 2, 6);
+      this.optionsTable.Controls.Add(this.attackDirSearchCheckBox, 0, 1);
+      this.optionsTable.Controls.Add(this.attackDirTextBox, 1, 1);
+      this.optionsTable.Controls.Add(this.attackDirButton, 2, 1);
+      this.optionsTable.Controls.Add(this.spriteDirSearchCheckBox, 0, 3);
+      this.optionsTable.Controls.Add(this.spriteDirTextBox, 1, 3);
+      this.optionsTable.Controls.Add(this.spriteDirButton, 2, 3);
+      this.optionsTable.Controls.Add(this.attackLabel, 0, 0);
+      this.optionsTable.Controls.Add(this.spriteLabel, 0, 2);
+      this.optionsTable.Controls.Add(this.spriteHurtboxCheckBox, 0, 4);
+      this.optionsTable.Controls.Add(this.spriteHurtboxLabel, 1, 4);
+      this.optionsTable.Controls.Add(this.characterDirTextBox, 0, 8);
+      this.optionsTable.Controls.Add(this.characterLabel, 0, 7);
+      this.optionsTable.Controls.Add(this.characterDirButton, 2, 8);
+      this.optionsTable.Controls.Add(this.asepriteLabel, 1, 5);
+      this.optionsTable.Controls.Add(this.asepriteDirTextBox, 1, 6);
+      this.optionsTable.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.optionsTable.Location = new System.Drawing.Point(3, 3);
+      this.optionsTable.Name = "optionsTable";
+      this.optionsTable.RowCount = 10;
+      this.optionsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+      this.optionsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+      this.optionsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+      this.optionsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+      this.optionsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+      this.optionsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+      this.optionsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+      this.optionsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+      this.optionsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+      this.optionsTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.optionsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.optionsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.optionsTable.Size = new System.Drawing.Size(470, 266);
+      this.optionsTable.TabIndex = 0;
       // 
       // asepriteDirButton
       // 
@@ -252,6 +259,7 @@
       this.attackDirTextBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
       this.attackDirTextBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
       this.attackDirTextBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
+      this.attackDirTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.attackDirTextBox_Validating);
       // 
       // attackDirButton
       // 
@@ -301,6 +309,7 @@
       this.spriteDirTextBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
       this.spriteDirTextBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
       this.spriteDirTextBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
+      this.spriteDirTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.spriteDirTextBox_Validating);
       // 
       // spriteDirButton
       // 
@@ -313,29 +322,29 @@
       this.spriteDirButton.TabIndex = 6;
       this.spriteDirButton.UseVisualStyleBackColor = true;
       // 
-      // label1
+      // attackLabel
       // 
-      this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.label1.AutoSize = true;
-      this.tableLayoutPanel2.SetColumnSpan(this.label1, 2);
-      this.label1.Location = new System.Drawing.Point(0, 12);
-      this.label1.Margin = new System.Windows.Forms.Padding(0);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(43, 13);
-      this.label1.TabIndex = 17;
-      this.label1.Text = "Attacks";
+      this.attackLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.attackLabel.AutoSize = true;
+      this.optionsTable.SetColumnSpan(this.attackLabel, 2);
+      this.attackLabel.Location = new System.Drawing.Point(0, 12);
+      this.attackLabel.Margin = new System.Windows.Forms.Padding(0);
+      this.attackLabel.Name = "attackLabel";
+      this.attackLabel.Size = new System.Drawing.Size(43, 13);
+      this.attackLabel.TabIndex = 17;
+      this.attackLabel.Text = "Attacks";
       // 
-      // label2
+      // spriteLabel
       // 
-      this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.label2.AutoSize = true;
-      this.tableLayoutPanel2.SetColumnSpan(this.label2, 2);
-      this.label2.Location = new System.Drawing.Point(0, 62);
-      this.label2.Margin = new System.Windows.Forms.Padding(0);
-      this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(39, 13);
-      this.label2.TabIndex = 18;
-      this.label2.Text = "Sprites";
+      this.spriteLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.spriteLabel.AutoSize = true;
+      this.optionsTable.SetColumnSpan(this.spriteLabel, 2);
+      this.spriteLabel.Location = new System.Drawing.Point(0, 62);
+      this.spriteLabel.Margin = new System.Windows.Forms.Padding(0);
+      this.spriteLabel.Name = "spriteLabel";
+      this.spriteLabel.Size = new System.Drawing.Size(39, 13);
+      this.spriteLabel.TabIndex = 18;
+      this.spriteLabel.Text = "Sprites";
       // 
       // spriteHurtboxCheckBox
       // 
@@ -348,7 +357,8 @@
       this.spriteHurtboxCheckBox.Name = "spriteHurtboxCheckBox";
       this.spriteHurtboxCheckBox.Size = new System.Drawing.Size(14, 17);
       this.spriteHurtboxCheckBox.TabIndex = 7;
-      this.spriteHurtboxCheckBox.Tag = "Whether or not to generate hurtboxes by using the layer group \"hurtbox\".";
+      this.spriteHurtboxCheckBox.Tag = "Whether or not to generate hurtboxes by using the layer group \"hurtbox\", if it ex" +
+    "ists.";
       this.spriteHurtboxCheckBox.Text = "checkBox1";
       this.spriteHurtboxCheckBox.UseVisualStyleBackColor = true;
       this.spriteHurtboxCheckBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
@@ -370,7 +380,7 @@
       // characterDirTextBox
       // 
       this.characterDirTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.tableLayoutPanel2.SetColumnSpan(this.characterDirTextBox, 2);
+      this.optionsTable.SetColumnSpan(this.characterDirTextBox, 2);
       this.characterDirTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::workshop_forms.Properties.Settings.Default, "characterDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
       this.characterDirTextBox.Location = new System.Drawing.Point(3, 194);
       this.characterDirTextBox.Name = "characterDirTextBox";
@@ -384,18 +394,19 @@
       this.characterDirTextBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
       this.characterDirTextBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
       this.characterDirTextBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
+      this.characterDirTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.characterDirTextBox_Validating);
       // 
-      // label3
+      // characterLabel
       // 
-      this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.label3.AutoSize = true;
-      this.tableLayoutPanel2.SetColumnSpan(this.label3, 2);
-      this.label3.Location = new System.Drawing.Point(0, 178);
-      this.label3.Margin = new System.Windows.Forms.Padding(0);
-      this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(53, 13);
-      this.label3.TabIndex = 19;
-      this.label3.Text = "Character";
+      this.characterLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.characterLabel.AutoSize = true;
+      this.optionsTable.SetColumnSpan(this.characterLabel, 2);
+      this.characterLabel.Location = new System.Drawing.Point(0, 178);
+      this.characterLabel.Margin = new System.Windows.Forms.Padding(0);
+      this.characterLabel.Name = "characterLabel";
+      this.characterLabel.Size = new System.Drawing.Size(53, 13);
+      this.characterLabel.TabIndex = 19;
+      this.characterLabel.Text = "Character";
       // 
       // characterDirButton
       // 
@@ -434,6 +445,7 @@
       this.asepriteDirTextBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
       this.asepriteDirTextBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
       this.asepriteDirTextBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
+      this.asepriteDirTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.asepriteDirTextBox_Validating);
       // 
       // tabPage2
       // 
@@ -454,7 +466,6 @@
       this.statusBarTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
       this.statusBarTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
       this.statusBarTable.Controls.Add(this.updateButton, 2, 0);
-      this.statusBarTable.Controls.Add(this.warningLabel, 0, 0);
       this.statusBarTable.Controls.Add(this.watchButton, 3, 0);
       this.statusBarTable.Controls.Add(this.statusLabel, 0, 0);
       this.statusBarTable.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -463,17 +474,17 @@
       this.statusBarTable.Padding = new System.Windows.Forms.Padding(5, 0, 5, 5);
       this.statusBarTable.RowCount = 1;
       this.statusBarTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.statusBarTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.statusBarTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
       this.statusBarTable.Size = new System.Drawing.Size(484, 37);
       this.statusBarTable.TabIndex = 2;
       // 
       // updateButton
       // 
       this.updateButton.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.updateButton.Location = new System.Drawing.Point(379, 0);
+      this.updateButton.Location = new System.Drawing.Point(319, 0);
       this.updateButton.Margin = new System.Windows.Forms.Padding(0);
       this.updateButton.Name = "updateButton";
-      this.updateButton.Size = new System.Drawing.Size(100, 12);
+      this.updateButton.Size = new System.Drawing.Size(60, 32);
       this.updateButton.TabIndex = 12;
       this.updateButton.Tag = "Perform a one-time check for changes by comparing write-times.";
       this.updateButton.Text = "Update";
@@ -484,23 +495,13 @@
       this.updateButton.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
       this.updateButton.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
       // 
-      // warningLabel
-      // 
-      this.warningLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.warningLabel.Image = ((System.Drawing.Image)(resources.GetObject("warningLabel.Image")));
-      this.warningLabel.Location = new System.Drawing.Point(322, 0);
-      this.warningLabel.Name = "warningLabel";
-      this.warningLabel.Size = new System.Drawing.Size(54, 12);
-      this.warningLabel.TabIndex = 1;
-      this.warningLabel.Visible = false;
-      // 
       // watchButton
       // 
       this.watchButton.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.watchButton.Location = new System.Drawing.Point(5, 12);
+      this.watchButton.Location = new System.Drawing.Point(379, 0);
       this.watchButton.Margin = new System.Windows.Forms.Padding(0);
       this.watchButton.Name = "watchButton";
-      this.watchButton.Size = new System.Drawing.Size(32, 20);
+      this.watchButton.Size = new System.Drawing.Size(100, 32);
       this.watchButton.TabIndex = 13;
       this.watchButton.Tag = "Begin watching the enabled directories for changes.";
       this.watchButton.Text = "Watch";
@@ -520,7 +521,7 @@
       this.statusLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
       this.statusLabel.Location = new System.Drawing.Point(8, 0);
       this.statusLabel.Name = "statusLabel";
-      this.statusLabel.Size = new System.Drawing.Size(0, 12);
+      this.statusLabel.Size = new System.Drawing.Size(0, 32);
       this.statusLabel.TabIndex = 0;
       this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
@@ -546,8 +547,11 @@
       this.aboutButton.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.aboutButton.Name = "aboutButton";
       this.aboutButton.Size = new System.Drawing.Size(60, 22);
+      this.aboutButton.Tag = "View information about this program.";
       this.aboutButton.Text = "About";
       this.aboutButton.Click += new System.EventHandler(this.aboutButton_Click);
+      this.aboutButton.MouseEnter += new System.EventHandler(this.ToolStripItem_UpdateStatusBarText);
+      this.aboutButton.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
       // 
       // wikiButton
       // 
@@ -564,10 +568,31 @@
       this.wikiButton.MouseEnter += new System.EventHandler(this.ToolStripItem_UpdateStatusBarText);
       this.wikiButton.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
       // 
+      // attackDirTextBoxError
+      // 
+      this.attackDirTextBoxError.ContainerControl = this;
+      this.attackDirTextBoxError.Icon = ((System.Drawing.Icon)(resources.GetObject("attackDirTextBoxError.Icon")));
+      // 
+      // spriteDirTextBoxError
+      // 
+      this.spriteDirTextBoxError.ContainerControl = this;
+      this.spriteDirTextBoxError.Icon = ((System.Drawing.Icon)(resources.GetObject("spriteDirTextBoxError.Icon")));
+      // 
+      // asepriteDirTextBoxError
+      // 
+      this.asepriteDirTextBoxError.ContainerControl = this;
+      this.asepriteDirTextBoxError.Icon = ((System.Drawing.Icon)(resources.GetObject("asepriteDirTextBoxError.Icon")));
+      // 
+      // characterDirTextBoxError
+      // 
+      this.characterDirTextBoxError.ContainerControl = this;
+      this.characterDirTextBoxError.Icon = ((System.Drawing.Icon)(resources.GetObject("characterDirTextBoxError.Icon")));
+      // 
       // MainWindow
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
       this.ClientSize = new System.Drawing.Size(484, 361);
       this.Controls.Add(this.splitContainer1);
       this.Controls.Add(this.toolStrip1);
@@ -584,13 +609,17 @@
       this.splitContainer1.ResumeLayout(false);
       this.tabControl.ResumeLayout(false);
       this.tabPageOptions.ResumeLayout(false);
-      this.tableLayoutPanel2.ResumeLayout(false);
-      this.tableLayoutPanel2.PerformLayout();
+      this.optionsTable.ResumeLayout(false);
+      this.optionsTable.PerformLayout();
       this.tabPage2.ResumeLayout(false);
       this.statusBarTable.ResumeLayout(false);
       this.statusBarTable.PerformLayout();
       this.toolStrip1.ResumeLayout(false);
       this.toolStrip1.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.attackDirTextBoxError)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.spriteDirTextBoxError)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.asepriteDirTextBoxError)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.characterDirTextBoxError)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -606,11 +635,10 @@
     private System.Windows.Forms.Button watchButton;
     private System.Windows.Forms.Label statusLabel;
     private System.Windows.Forms.TableLayoutPanel statusBarTable;
-    private System.Windows.Forms.Label warningLabel;
     private System.Windows.Forms.TabControl tabControl;
     private System.Windows.Forms.TabPage tabPageOptions;
     private System.Windows.Forms.TabPage tabPage2;
-    private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+    private System.Windows.Forms.TableLayoutPanel optionsTable;
     private System.Windows.Forms.CheckBox attackDirSearchCheckBox;
     private System.Windows.Forms.TextBox attackDirTextBox;
     private System.Windows.Forms.Button attackDirButton;
@@ -619,9 +647,9 @@
     private System.Windows.Forms.Button spriteDirButton;
     private System.Windows.Forms.TextBox characterDirTextBox;
     private System.Windows.Forms.Button characterDirButton;
-    private System.Windows.Forms.Label label1;
-    private System.Windows.Forms.Label label2;
-    private System.Windows.Forms.Label label3;
+    private System.Windows.Forms.Label attackLabel;
+    private System.Windows.Forms.Label spriteLabel;
+    private System.Windows.Forms.Label characterLabel;
     private System.Windows.Forms.CheckBox spriteHurtboxCheckBox;
     private System.Windows.Forms.Label spriteHurtboxLabel;
     private System.Windows.Forms.Button asepriteDirButton;
@@ -631,6 +659,10 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton wikiButton;
         private System.Windows.Forms.ToolStripButton aboutButton;
+        private System.Windows.Forms.ErrorProvider attackDirTextBoxError;
+        private System.Windows.Forms.ErrorProvider spriteDirTextBoxError;
+        private System.Windows.Forms.ErrorProvider asepriteDirTextBoxError;
+        private System.Windows.Forms.ErrorProvider characterDirTextBoxError;
     }
 }
 

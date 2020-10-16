@@ -14,6 +14,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Channels;
 using System.Threading;
 using System.Diagnostics;
+using System.Windows;
 
 namespace workshop_forms
 {
@@ -26,10 +27,10 @@ namespace workshop_forms
       dt = new Dictionary<string, DateTime>();
 
       labels = new List<(Button, TextBox, string)> {
-        (attackDirButton,    attackDirTextBox, "Choose attacks directory..."),
-        (spriteDirButton,    spriteDirTextBox, "Choose sprites directory..."),
+        (attackDirButton,    attackDirTextBox,    "Choose attacks directory..."),
+        (spriteDirButton,    spriteDirTextBox,    "Choose sprites directory..."),
         (characterDirButton, characterDirTextBox, "Choose Workshop character directory..."),
-        (asepriteDirButton,  asepriteDirTextBox, "Choose Aseprite directory...")
+        (asepriteDirButton,  asepriteDirTextBox,  "Choose Aseprite directory...")
       };
 
       foreach ((Button b, TextBox tb, string l) in labels) {
@@ -42,16 +43,15 @@ namespace workshop_forms
         */
         b.Click += (object o, EventArgs e) => PickDirToTextBox(tb, l);
         // void focusTB(object o, MouseEventArgs e) => ActiveControl = tb;
-        tb.TextChanged += UpdateWatchButton;
+        // tb.TextChanged += UpdateWatchButton;
       }
 
-      attackDirSearchCheckBox.CheckedChanged += UpdateWatchButton;
       attackDirSearchCheckBox.CheckedChanged += (object o, EventArgs e) =>
         attackDirButton.Enabled =
         attackDirTextBox.Enabled =
           attackDirSearchCheckBox.Checked;
+      attackDirSearchCheckBox.CheckedChanged += UpdateWatchButton;
 
-      spriteDirSearchCheckBox.CheckedChanged += UpdateWatchButton;
       spriteDirSearchCheckBox.CheckedChanged += (object o, EventArgs e) =>
         spriteDirButton.Enabled =
         spriteDirTextBox.Enabled =
@@ -61,6 +61,7 @@ namespace workshop_forms
         spriteHurtboxCheckBox.Enabled =
         spriteHurtboxLabel.Enabled =
           spriteDirSearchCheckBox.Checked;
+      spriteDirSearchCheckBox.CheckedChanged += UpdateWatchButton;
 
       spriteDirTextBox.TextChanged += UpdateWatchButton;
       spriteDirTextBox.TextChanged += DeleteStatusBarText;
@@ -81,8 +82,14 @@ namespace workshop_forms
       InitWatcher(out atkWatcher, "*.atk", AtkFileChanged);
       InitWatcher(out spriteWatcher, "*.aseprite", SpriteFileChanged);
 
+      ValidateChildren();
       DeleteStatusBarText(new object(), new EventArgs());
       UpdateWatchButton(new object(), new EventArgs());
+    }
+
+    private void Tb_Validating(object sender, CancelEventArgs e)
+    {
+      throw new NotImplementedException();
     }
 
     private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -143,17 +150,17 @@ namespace workshop_forms
 
     private void UpdateWatchButton(object o, EventArgs e)
     {
-      if (CanStartWatching()) {
+      if ((attackDirSearchCheckBox.Checked || spriteDirSearchCheckBox.Checked) && ValidateChildren(ValidationConstraints.Enabled)) {
         watchButton.Enabled = updateButton.Enabled = true;
-        warningLabel.Visible = false;
-        statusBarTable.SetColumnSpan(statusLabel, 2);
-        statusBarTable.SetColumn(statusLabel, 0);
+        //warningLabel.Visible = false;
+        // statusBarTable.SetColumnSpan(statusLabel, 2);
+        // statusBarTable.SetColumn(statusLabel, 0);
         // statusLabel.DisplayStyle = ToolStripItemDisplayStyle.Text;
       } else {
         watchButton.Enabled = updateButton.Enabled = false;
-        warningLabel.Visible = true;
-        statusBarTable.SetColumnSpan(statusLabel, 1);
-        statusBarTable.SetColumn(statusLabel, 1);
+        //warningLabel.Visible = true;
+        // statusBarTable.SetColumnSpan(statusLabel, 1);
+        // statusBarTable.SetColumn(statusLabel, 1);
         // statusLabel.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
       }
     }
@@ -179,10 +186,12 @@ namespace workshop_forms
 
     private void DeleteStatusBarText(object o, EventArgs e)
     {
+      statusLabel.Text = "";
       // this is a yanderedev moment
+      /*
       if (attackDirSearchCheckBox.Checked) {
         if (!Directory.Exists(Properties.Settings.Default.attacksDir)) {
-          statusLabel.Text = "Attacks directory does not exist.";
+          // statusLabel.Text = "Attacks directory does not exist.";
           return;
         }
       }
@@ -216,7 +225,7 @@ namespace workshop_forms
         statusLabel.Text = "Workshop character sprites directory does not exist.";
         return;
       }
-      statusLabel.Text = "";
+      */
     }
 
     private void PickDirToTextBox(TextBox tb, string title)
@@ -225,6 +234,8 @@ namespace workshop_forms
       fd.Title = title;
       if (fd.ShowDialog() == CommonFileDialogResult.Ok) {
         tb.Text = fd.FileName;
+        UpdateWatchButton(tb, new EventArgs());
+        DeleteStatusBarText(tb, new EventArgs());
         // tb.Select(tb.Text.Length, 0);
       }
     }
@@ -268,11 +279,22 @@ namespace workshop_forms
       }
     }
 
+    /*
     private void ResizeRTBToContents (object sender, ContentsResizedEventArgs e) =>
       ((RichTextBox)sender).ClientSize = new Size(e.NewRectangle.Width, e.NewRectangle.Height);
+    */
 
     private void watchButton_Click(object sender, EventArgs e)
     {
+      // one final check just in case
+      if (!ValidateChildren(ValidationConstraints.Enabled)) {
+        watchButton.Enabled = updateButton.Enabled = false;
+        //warningLabel.Visible = true;
+        // statusBarTable.SetColumnSpan(statusLabel, 1);
+        //statusBarTable.SetColumn(statusLabel, 1);
+        return;
+      }
+
       if (currentlyWatching) {
         currentlyWatching = false;
         tabPageOptions.Enabled = true;
@@ -297,12 +319,12 @@ namespace workshop_forms
         Control_UpdateStatusBarText(sender, e);
 
         if (attackDirSearchCheckBox.Checked) {
-          atkWatcher.Path = labels[0].Item2.Text;
+          atkWatcher.Path = Properties.Settings.Default.attacksDir;
           atkWatcher.EnableRaisingEvents = true;
         }
 
         if (spriteDirSearchCheckBox.Checked) {
-          spriteWatcher.Path = labels[1].Item2.Text;
+          spriteWatcher.Path = Properties.Settings.Default.spritesDir;
           spriteWatcher.EnableRaisingEvents = true;
         }
       }
@@ -310,6 +332,15 @@ namespace workshop_forms
 
     private void updateButton_Click(object sender, EventArgs e)
     {
+      // one final check just in case
+      if (!ValidateChildren(ValidationConstraints.Enabled)) {
+        watchButton.Enabled = updateButton.Enabled = false;
+        //warningLabel.Visible = true;
+        // statusBarTable.SetColumnSpan(statusLabel, 1);
+        // statusBarTable.SetColumn(statusLabel, 1);
+        return;
+      }
+
       tabControl.SelectedIndex = 1;
       List<string> sprites = Properties.Settings.Default.spritesDirSearch
                            ? SpritesToUpdate()
@@ -339,8 +370,60 @@ namespace workshop_forms
 
     private void aboutButton_Click(object sender, EventArgs e)
     {
-      var a = new AboutWindow();
-      a.ShowDialog();
+      new AboutWindow().ShowDialog();
+    }
+
+    private void attackDirTextBox_Validating(object sender, CancelEventArgs e)
+    {
+      string t = attackDirTextBox.Text;
+      if (!Directory.Exists(t)) {
+        e.Cancel = true;
+        attackDirTextBoxError.SetError(attackLabel, "Attacks directory does not exist.");
+      } else {
+        attackDirTextBoxError.SetError(attackLabel, String.Empty);
+      }
+    }
+
+    private void spriteDirTextBox_Validating(object sender, CancelEventArgs e)
+    {
+      string t = spriteDirTextBox.Text;
+      if (!Directory.Exists(t)) {
+        e.Cancel = true;
+        spriteDirTextBoxError.SetError(spriteLabel, "Sprites directory does not exist.");
+      } else {
+        spriteDirTextBoxError.SetError(spriteLabel, String.Empty);
+      }
+    }
+
+    private void asepriteDirTextBox_Validating(object sender, CancelEventArgs e)
+    {
+      string t = asepriteDirTextBox.Text;
+      if (!Directory.Exists(t)) {
+        e.Cancel = true;
+        asepriteDirTextBoxError.SetError(asepriteLabel, "Aseprite directory does not exist.");
+      } else if (!File.Exists(Path.Combine(t, "aseprite.exe"))) {
+        e.Cancel = true;
+        asepriteDirTextBoxError.SetError(asepriteLabel, "aseprite.exe does not exist.");
+      } else {
+        asepriteDirTextBoxError.SetError(asepriteLabel, String.Empty);
+      }
+    }
+
+    private void characterDirTextBox_Validating(object sender, CancelEventArgs e)
+    {
+      string t = characterDirTextBox.Text;
+      if (!Directory.Exists(t)) {
+        e.Cancel = true;
+        characterDirTextBoxError.SetError(characterLabel, "Workshop character directory does not exist.");
+      } else if (!Directory.Exists(Path.Combine(t, "scripts/attacks"))) {
+        e.Cancel = true;
+        characterDirTextBoxError.SetError(characterLabel, "Workshop character attacks directory does not exist.");
+      } else if (!Directory.Exists(Path.Combine(t, "sprites"))) {
+        e.Cancel = true;
+        characterDirTextBoxError.SetError(characterLabel, "Workshop character sprites directory does not exist.");
+      } else {
+        characterDirTextBoxError.SetError(characterLabel, String.Empty);
+      }
     }
   }
 }
