@@ -507,15 +507,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Rivals Easy Workshop Tool"
-        "ProductCode" = "8:{01A01750-BCE9-490B-A1B9-99E8AB70BEFA}"
-        "PackageCode" = "8:{46B5062F-B250-4238-B360-68863702DF02}"
+        "ProductCode" = "8:{AD499262-72CA-453B-819F-C4EFCDCFF824}"
+        "PackageCode" = "8:{A79766A8-1F34-4A68-AFC2-F17E8A2C962B}"
         "UpgradeCode" = "8:{162C470C-835B-4DBA-9BB6-F6A25E36B9E7}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.1.0"
+        "ProductVersion" = "8:1.1.1"
         "Manufacturer" = "8:wuffie"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1043,7 +1043,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_CFB817958E544F46AF8068A9C4CA0247"
             {
-            "SourcePath" = "8:..\\workshop_forms\\obj\\Release\\rivals-easy-workshop-tool.exe"
+            "SourcePath" = "8:..\\workshop_forms\\obj\\Debug\\rivals-easy-workshop-tool.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_1A198EE584A34CFC9ACA5BDA8277F363"

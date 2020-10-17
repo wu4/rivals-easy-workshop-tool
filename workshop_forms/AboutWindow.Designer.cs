@@ -84,11 +84,11 @@
       // 
       this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
       this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(36, 136);
+      this.label3.Location = new System.Drawing.Point(31, 136);
       this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(162, 13);
+      this.label3.Size = new System.Drawing.Size(171, 13);
       this.label3.TabIndex = 2;
-      this.label3.Text = "Rivals Easy Workshop Tool v1.1";
+      this.label3.Text = "Rivals Easy Workshop Tool v1.1.1";
       this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // pictureBox1

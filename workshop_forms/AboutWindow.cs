@@ -54,13 +54,13 @@ namespace workshop_forms
       a.Close();
     }
 
-    /*
+        /*
 
-    protected override void MouseCaptureChanged(EventArgs e)
-    {
+        protected override void MouseCaptureChanged(EventArgs e)
+        {
 
-        base.MouseCaptureChanged(e);
+            base.MouseCaptureChanged(e);
+        }
+        */
     }
-    */
-  }
 }

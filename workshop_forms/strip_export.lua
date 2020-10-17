@@ -30,6 +30,15 @@ function in_table(tbl, item)
   return false
 end
 
+function has_hurtbox_layer(sprite)
+  for _, layer in ipairs(sprite.layers) do
+    if layer.isGroup and layer.name == "hurtbox" then
+      return true
+    end
+  end
+  return false
+end
+
 OUTPATH = app.params["sprite_out_path"]
 
 sprite_count = tonumber(app.params["sprite_count"])
@@ -73,7 +82,8 @@ for i,sprite in ipairs(app.sprites) do
   print("Strip saved:\n" .. stripOutName)
 
   if (tonumber(app.params["sprite_genhurt_" .. tostring(i)]) == 1)
-     and not in_table(hurtbox_blacklist, app.fs.fileTitle(sprite.filename))
+     and (not in_table(hurtbox_blacklist, app.fs.fileTitle(sprite.filename))
+     and has_hurtbox_layer(sprite))
   then
     for i, layer in ipairs(sprite.layers) do
       if not (layer.isGroup and layer.name == "hurtbox") then
