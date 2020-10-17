@@ -47,6 +47,9 @@ namespace workshop_forms
         // tb.TextChanged += UpdateWatchButton;
       }
 
+      InitWatcher(out atkWatcher, "*.atk", AtkFileChanged);
+      InitWatcher(out spriteWatcher, "*.aseprite", SpriteFileChanged);
+
       attackDirSearchCheckBox.CheckedChanged += (object o, EventArgs e) =>
         attackDirButton.Enabled =
         attackDirTextBox.Enabled =
@@ -86,21 +89,11 @@ namespace workshop_forms
         asepriteDirTextBox.Enabled =
         spriteHurtboxCheckBox.Enabled =
           spriteDirSearchCheckBox.Checked && asepriteFileFormatButton.Checked;
-        /*
-        if (asepriteFileFormatButton.Checked) {
-          spriteHurtboxCheckBox.Tag = "Whether or not to generate hurtboxes by using the layer group \"hurtbox\", if it exists.";
-        } else {
-          spriteHurtboxCheckBox.Tag = "Whether or not to generate hurtboxes from the file \"[attack]_hurt.gif\", if it exists.";
-        }
-        */
+
+        spriteWatcher.Filter = asepriteFileFormatButton.Checked ? "*.aseprite" : "*.gif";
       };
       asepriteFileFormatButton.CheckedChanged += UpdateWatchButton;
 
-      // attackDirTextBox.Text = Properties.Settings.Default.attacksDir;
-      // spriteDirTextBox.Text = Properties.Settings.Default.spritesDir;
-      // characterDirTextBox.Text = Properties.Settings.Default.characterDir;
-      // attackDirSearchCheckBox.Checked = Properties.Settings.Default.attacksDirSearch;
-      // spriteDirSearchCheckBox.Checked = Properties.Settings.Default.spritesDirSearch;
       asepriteFileFormatButton.Checked = Properties.Settings.Default.searchForAseprites;
       gifFileFormatButton.Checked = !Properties.Settings.Default.searchForAseprites;
 
@@ -108,13 +101,9 @@ namespace workshop_forms
         IsFolderPicker = true
       };
 
-      InitWatcher(out atkWatcher, "*.atk", AtkFileChanged);
-      InitWatcher(out spriteWatcher, "*.aseprite", SpriteFileChanged);
-
       ValidateChildren();
       DeleteStatusBarText(new object(), new EventArgs());
       UpdateWatchButton(new object(), new EventArgs());
-      //ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
     }
 
     private void Tb_Validating(object sender, CancelEventArgs e)
@@ -124,11 +113,6 @@ namespace workshop_forms
 
     private void Form1_FormClosing(object sender, FormClosingEventArgs e)
     {
-      // Properties.Settings.Default.attacksDir = attackDirTextBox.Text;
-      // Properties.Settings.Default.spritesDir = spriteDirTextBox.Text;
-      // Properties.Settings.Default.characterDir = characterDirTextBox.Text;
-      // Properties.Settings.Default.attacksDirSearch = attackDirSearchCheckBox.Checked;
-      // Properties.Settings.Default.spritesDirSearch = spriteDirSearchCheckBox.Checked;
       Properties.Settings.Default.Save();
     }
 
@@ -182,16 +166,8 @@ namespace workshop_forms
     {
       if ((attackDirSearchCheckBox.Checked || spriteDirSearchCheckBox.Checked) && ValidateChildren(ValidationConstraints.Enabled)) {
         watchButton.Enabled = updateButton.Enabled = true;
-        //warningLabel.Visible = false;
-        // statusBarTable.SetColumnSpan(statusLabel, 2);
-        // statusBarTable.SetColumn(statusLabel, 0);
-        // statusLabel.DisplayStyle = ToolStripItemDisplayStyle.Text;
       } else {
         watchButton.Enabled = updateButton.Enabled = false;
-        //warningLabel.Visible = true;
-        // statusBarTable.SetColumnSpan(statusLabel, 1);
-        // statusBarTable.SetColumn(statusLabel, 1);
-        // statusLabel.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
       }
     }
 
@@ -217,45 +193,6 @@ namespace workshop_forms
     private void DeleteStatusBarText(object o, EventArgs e)
     {
       statusLabel.Text = "";
-      // this is a yanderedev moment
-      /*
-      if (attackDirSearchCheckBox.Checked) {
-        if (!Directory.Exists(Properties.Settings.Default.attacksDir)) {
-          // statusLabel.Text = "Attacks directory does not exist.";
-          return;
-        }
-      }
-      if (spriteDirSearchCheckBox.Checked) {
-        if (!Directory.Exists(Properties.Settings.Default.spritesDir)) {
-          statusLabel.Text = "Sprites directory does not exist.";
-          return;
-        }
-        if (!Directory.Exists(Properties.Settings.Default.asepriteDir)) {
-          statusLabel.Text = "Aseprite directory does not exist.";
-          return;
-        }
-        if (!File.Exists(Path.Combine(Properties.Settings.Default.asepriteDir, "aseprite.exe"))) {
-          statusLabel.Text = "aseprite.exe does not exist.";
-          return;
-        }
-      }
-      if (!(attackDirSearchCheckBox.Checked || spriteDirSearchCheckBox.Checked)) {
-        statusLabel.Text = "Neither directory is checked for searching.";
-        return;
-      }
-      if (!Directory.Exists(Properties.Settings.Default.characterDir)) {
-        statusLabel.Text = "Workshop character directory does not exist.";
-        return;
-      }
-      if (!Directory.Exists(Path.Combine(Properties.Settings.Default.characterDir, "scripts/attacks"))) {
-        statusLabel.Text = "Workshop character attacks directory does not exist.";
-        return;
-      }
-      if (!Directory.Exists(Path.Combine(Properties.Settings.Default.characterDir, "sprites"))) {
-        statusLabel.Text = "Workshop character sprites directory does not exist.";
-        return;
-      }
-      */
     }
 
     private void PickDirToTextBox(TextBox tb, string title)
@@ -266,7 +203,6 @@ namespace workshop_forms
         tb.Text = fd.FileName;
         UpdateWatchButton(tb, new EventArgs());
         DeleteStatusBarText(tb, new EventArgs());
-        // tb.Select(tb.Text.Length, 0);
       }
     }
 
@@ -302,7 +238,13 @@ namespace workshop_forms
           //consoleTextBox.AppendText($"{e.FullPath}\n");
           consoleTextBox.AppendText($"Converting {e.Name}...\n");
           RemoveOldSprites(Path.GetFileNameWithoutExtension(e.Name));
-          consoleTextBox.AppendText($"{Convert.Aseprite(new List<string> {e.FullPath})}");
+          string output;
+          if (asepriteFileFormatButton.Checked) {
+            output = Convert.Aseprite(new List<string> { e.FullPath });
+          } else {
+            output = Convert.Gif(e.FullPath);
+          }
+          consoleTextBox.AppendText(output);
           consoleTextBox.SelectionStart = consoleTextBox.Text.Length;
           consoleTextBox.ScrollToCaret();
         });

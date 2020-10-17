@@ -88,18 +88,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D0C069F35C2A2E1E26BD1A02BAEFFC75"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_73F4A76377FB739BCF951FDF871DF0FA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_4A6C8A02528E2AC6FC21FEC41E5F70D0"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -113,6 +101,18 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_757A3468C577EF651EC4A495C03609D4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D0C069F35C2A2E1E26BD1A02BAEFFC75"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_73F4A76377FB739BCF951FDF871DF0FA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -152,6 +152,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -507,15 +515,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Rivals Easy Workshop Tool"
-        "ProductCode" = "8:{AD499262-72CA-453B-819F-C4EFCDCFF824}"
-        "PackageCode" = "8:{A79766A8-1F34-4A68-AFC2-F17E8A2C962B}"
+        "ProductCode" = "8:{B930039E-B76A-4A7A-9033-7F21BFDB3ED3}"
+        "PackageCode" = "8:{84A52D10-B617-405E-B9C5-43AFB6A79AE4}"
         "UpgradeCode" = "8:{162C470C-835B-4DBA-9BB6-F6A25E36B9E7}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.1.1"
+        "ProductVersion" = "8:1.1.2"
         "Manufacturer" = "8:wuffie"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1043,7 +1051,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_CFB817958E544F46AF8068A9C4CA0247"
             {
-            "SourcePath" = "8:..\\workshop_forms\\obj\\Debug\\rivals-easy-workshop-tool.exe"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_1A198EE584A34CFC9ACA5BDA8277F363"

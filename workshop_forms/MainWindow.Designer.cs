@@ -40,15 +40,22 @@
       this.tabPageOptions = new System.Windows.Forms.TabPage();
       this.optionsTable = new System.Windows.Forms.TableLayoutPanel();
       this.asepriteDirButton = new System.Windows.Forms.Button();
+      this.attackDirTextBox = new System.Windows.Forms.TextBox();
       this.attackDirButton = new System.Windows.Forms.Button();
+      this.spriteDirTextBox = new System.Windows.Forms.TextBox();
       this.spriteDirButton = new System.Windows.Forms.Button();
+      this.characterDirTextBox = new System.Windows.Forms.TextBox();
       this.characterLabel = new System.Windows.Forms.Label();
       this.characterDirButton = new System.Windows.Forms.Button();
       this.asepriteLabel = new System.Windows.Forms.Label();
-      this.spriteFileFormatLabel = new System.Windows.Forms.Label();
+      this.asepriteDirTextBox = new System.Windows.Forms.TextBox();
       this.spriteFileFormatFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
       this.asepriteFileFormatButton = new System.Windows.Forms.RadioButton();
       this.gifFileFormatButton = new System.Windows.Forms.RadioButton();
+      this.spriteFileFormatLabel = new System.Windows.Forms.Label();
+      this.spriteHurtboxCheckBox = new System.Windows.Forms.CheckBox();
+      this.spriteDirSearchCheckBox = new System.Windows.Forms.CheckBox();
+      this.attackDirSearchCheckBox = new System.Windows.Forms.CheckBox();
       this.tabPage2 = new System.Windows.Forms.TabPage();
       this.statusBarTable = new System.Windows.Forms.TableLayoutPanel();
       this.updateButton = new System.Windows.Forms.Button();
@@ -61,13 +68,6 @@
       this.spriteDirTextBoxError = new System.Windows.Forms.ErrorProvider(this.components);
       this.asepriteDirTextBoxError = new System.Windows.Forms.ErrorProvider(this.components);
       this.characterDirTextBoxError = new System.Windows.Forms.ErrorProvider(this.components);
-      this.attackDirSearchCheckBox = new System.Windows.Forms.CheckBox();
-      this.attackDirTextBox = new System.Windows.Forms.TextBox();
-      this.spriteDirSearchCheckBox = new System.Windows.Forms.CheckBox();
-      this.spriteDirTextBox = new System.Windows.Forms.TextBox();
-      this.spriteHurtboxCheckBox = new System.Windows.Forms.CheckBox();
-      this.characterDirTextBox = new System.Windows.Forms.TextBox();
-      this.asepriteDirTextBox = new System.Windows.Forms.TextBox();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer_main)).BeginInit();
       this.splitContainer_main.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -224,6 +224,23 @@
       this.asepriteDirButton.TabIndex = 9;
       this.asepriteDirButton.UseVisualStyleBackColor = true;
       // 
+      // attackDirTextBox
+      // 
+      this.attackDirTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.attackDirTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::workshop_forms.Properties.Settings.Default, "attacksDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.attackDirTextBox.Location = new System.Drawing.Point(23, 28);
+      this.attackDirTextBox.Name = "attackDirTextBox";
+      this.attackDirTextBox.ReadOnly = true;
+      this.attackDirTextBox.Size = new System.Drawing.Size(419, 20);
+      this.attackDirTextBox.TabIndex = 2;
+      this.attackDirTextBox.Tag = "Directory containing *.atk files to transpile into GML.";
+      this.attackDirTextBox.Text = global::workshop_forms.Properties.Settings.Default.attacksDir;
+      this.attackDirTextBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.attackDirTextBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
+      this.attackDirTextBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.attackDirTextBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
+      this.attackDirTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.attackDirTextBox_Validating);
+      // 
       // attackDirButton
       // 
       this.attackDirButton.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -235,6 +252,23 @@
       this.attackDirButton.TabIndex = 3;
       this.attackDirButton.UseVisualStyleBackColor = true;
       // 
+      // spriteDirTextBox
+      // 
+      this.spriteDirTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.spriteDirTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::workshop_forms.Properties.Settings.Default, "spritesDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.spriteDirTextBox.Location = new System.Drawing.Point(23, 78);
+      this.spriteDirTextBox.Name = "spriteDirTextBox";
+      this.spriteDirTextBox.ReadOnly = true;
+      this.spriteDirTextBox.Size = new System.Drawing.Size(419, 20);
+      this.spriteDirTextBox.TabIndex = 5;
+      this.spriteDirTextBox.Tag = "Directory containing sprite files to convert into strip files.";
+      this.spriteDirTextBox.Text = global::workshop_forms.Properties.Settings.Default.spritesDir;
+      this.spriteDirTextBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.spriteDirTextBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
+      this.spriteDirTextBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.spriteDirTextBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
+      this.spriteDirTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.spriteDirTextBox_Validating);
+      // 
       // spriteDirButton
       // 
       this.spriteDirButton.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -245,6 +279,25 @@
       this.spriteDirButton.Size = new System.Drawing.Size(25, 25);
       this.spriteDirButton.TabIndex = 6;
       this.spriteDirButton.UseVisualStyleBackColor = true;
+      // 
+      // characterDirTextBox
+      // 
+      this.characterDirTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.optionsTable.SetColumnSpan(this.characterDirTextBox, 2);
+      this.characterDirTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::workshop_forms.Properties.Settings.Default, "characterDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.characterDirTextBox.Location = new System.Drawing.Point(3, 235);
+      this.characterDirTextBox.Name = "characterDirTextBox";
+      this.characterDirTextBox.ReadOnly = true;
+      this.characterDirTextBox.Size = new System.Drawing.Size(439, 20);
+      this.characterDirTextBox.TabIndex = 10;
+      this.characterDirTextBox.Tag = "The target Workshop character\'s root directory. Contains init.gml, as well as the" +
+    " sprites/ and scripts/ subdirectories.";
+      this.characterDirTextBox.Text = global::workshop_forms.Properties.Settings.Default.characterDir;
+      this.characterDirTextBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.characterDirTextBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
+      this.characterDirTextBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.characterDirTextBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
+      this.characterDirTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.characterDirTextBox_Validating);
       // 
       // characterLabel
       // 
@@ -280,16 +333,22 @@
       this.asepriteLabel.TabIndex = 22;
       this.asepriteLabel.Text = "Aseprite Directory";
       // 
-      // spriteFileFormatLabel
+      // asepriteDirTextBox
       // 
-      this.spriteFileFormatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.spriteFileFormatLabel.AutoSize = true;
-      this.spriteFileFormatLabel.Location = new System.Drawing.Point(20, 103);
-      this.spriteFileFormatLabel.Margin = new System.Windows.Forms.Padding(0);
-      this.spriteFileFormatLabel.Name = "spriteFileFormatLabel";
-      this.spriteFileFormatLabel.Size = new System.Drawing.Size(58, 13);
-      this.spriteFileFormatLabel.TabIndex = 23;
-      this.spriteFileFormatLabel.Text = "File Format";
+      this.asepriteDirTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.asepriteDirTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::workshop_forms.Properties.Settings.Default, "asepriteDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.asepriteDirTextBox.Location = new System.Drawing.Point(23, 185);
+      this.asepriteDirTextBox.Name = "asepriteDirTextBox";
+      this.asepriteDirTextBox.ReadOnly = true;
+      this.asepriteDirTextBox.Size = new System.Drawing.Size(419, 20);
+      this.asepriteDirTextBox.TabIndex = 8;
+      this.asepriteDirTextBox.Tag = "Directory containing aseprite.exe. Usually C:\\Program Files\\Aseprite.";
+      this.asepriteDirTextBox.Text = global::workshop_forms.Properties.Settings.Default.asepriteDir;
+      this.asepriteDirTextBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.asepriteDirTextBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
+      this.asepriteDirTextBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.asepriteDirTextBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
+      this.asepriteDirTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.asepriteDirTextBox_Validating);
       // 
       // spriteFileFormatFlowPanel
       // 
@@ -333,6 +392,79 @@
       this.gifFileFormatButton.Leave += new System.EventHandler(this.DeleteStatusBarText);
       this.gifFileFormatButton.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
       this.gifFileFormatButton.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
+      // 
+      // spriteFileFormatLabel
+      // 
+      this.spriteFileFormatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.spriteFileFormatLabel.AutoSize = true;
+      this.spriteFileFormatLabel.Location = new System.Drawing.Point(20, 103);
+      this.spriteFileFormatLabel.Margin = new System.Windows.Forms.Padding(0);
+      this.spriteFileFormatLabel.Name = "spriteFileFormatLabel";
+      this.spriteFileFormatLabel.Size = new System.Drawing.Size(58, 13);
+      this.spriteFileFormatLabel.TabIndex = 23;
+      this.spriteFileFormatLabel.Text = "File Format";
+      // 
+      // spriteHurtboxCheckBox
+      // 
+      this.spriteHurtboxCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+      this.spriteHurtboxCheckBox.AutoSize = true;
+      this.spriteHurtboxCheckBox.Checked = global::workshop_forms.Properties.Settings.Default.spritesHurtboxGeneration;
+      this.spriteHurtboxCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.spriteHurtboxCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::workshop_forms.Properties.Settings.Default, "spritesHurtboxGeneration", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.spriteHurtboxCheckBox.Location = new System.Drawing.Point(23, 145);
+      this.spriteHurtboxCheckBox.Name = "spriteHurtboxCheckBox";
+      this.spriteHurtboxCheckBox.Size = new System.Drawing.Size(116, 17);
+      this.spriteHurtboxCheckBox.TabIndex = 7;
+      this.spriteHurtboxCheckBox.Tag = "Whether or not to generate hurtboxes by using the layer group \"hurtbox\", if it ex" +
+    "ists.";
+      this.spriteHurtboxCheckBox.Text = "Hurtbox generation";
+      this.spriteHurtboxCheckBox.UseVisualStyleBackColor = true;
+      this.spriteHurtboxCheckBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.spriteHurtboxCheckBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
+      this.spriteHurtboxCheckBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.spriteHurtboxCheckBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
+      // 
+      // spriteDirSearchCheckBox
+      // 
+      this.spriteDirSearchCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.spriteDirSearchCheckBox.AutoSize = true;
+      this.spriteDirSearchCheckBox.Checked = global::workshop_forms.Properties.Settings.Default.spritesDirSearch;
+      this.spriteDirSearchCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.optionsTable.SetColumnSpan(this.spriteDirSearchCheckBox, 2);
+      this.spriteDirSearchCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::workshop_forms.Properties.Settings.Default, "spritesDirSearch", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.spriteDirSearchCheckBox.Location = new System.Drawing.Point(3, 58);
+      this.spriteDirSearchCheckBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+      this.spriteDirSearchCheckBox.Name = "spriteDirSearchCheckBox";
+      this.spriteDirSearchCheckBox.Size = new System.Drawing.Size(58, 17);
+      this.spriteDirSearchCheckBox.TabIndex = 4;
+      this.spriteDirSearchCheckBox.Tag = "Whether or not to watch for, and convert, sprite files.";
+      this.spriteDirSearchCheckBox.Text = "Sprites";
+      this.spriteDirSearchCheckBox.UseVisualStyleBackColor = true;
+      this.spriteDirSearchCheckBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.spriteDirSearchCheckBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
+      this.spriteDirSearchCheckBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.spriteDirSearchCheckBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
+      // 
+      // attackDirSearchCheckBox
+      // 
+      this.attackDirSearchCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.attackDirSearchCheckBox.AutoSize = true;
+      this.attackDirSearchCheckBox.Checked = global::workshop_forms.Properties.Settings.Default.attacksDirSearch;
+      this.attackDirSearchCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.optionsTable.SetColumnSpan(this.attackDirSearchCheckBox, 2);
+      this.attackDirSearchCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::workshop_forms.Properties.Settings.Default, "attacksDirSearch", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.attackDirSearchCheckBox.Location = new System.Drawing.Point(3, 8);
+      this.attackDirSearchCheckBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+      this.attackDirSearchCheckBox.Name = "attackDirSearchCheckBox";
+      this.attackDirSearchCheckBox.Size = new System.Drawing.Size(62, 17);
+      this.attackDirSearchCheckBox.TabIndex = 1;
+      this.attackDirSearchCheckBox.Tag = "Whether or not to watch for, and transpile, *.atk files.";
+      this.attackDirSearchCheckBox.Text = "Attacks";
+      this.attackDirSearchCheckBox.UseVisualStyleBackColor = true;
+      this.attackDirSearchCheckBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.attackDirSearchCheckBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
+      this.attackDirSearchCheckBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
+      this.attackDirSearchCheckBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
       // 
       // tabPage2
       // 
@@ -478,138 +610,6 @@
       this.characterDirTextBoxError.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
       this.characterDirTextBoxError.ContainerControl = this;
       this.characterDirTextBoxError.Icon = ((System.Drawing.Icon)(resources.GetObject("characterDirTextBoxError.Icon")));
-      // 
-      // attackDirSearchCheckBox
-      // 
-      this.attackDirSearchCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.attackDirSearchCheckBox.AutoSize = true;
-      this.attackDirSearchCheckBox.Checked = global::workshop_forms.Properties.Settings.Default.attacksDirSearch;
-      this.attackDirSearchCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.optionsTable.SetColumnSpan(this.attackDirSearchCheckBox, 2);
-      this.attackDirSearchCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::workshop_forms.Properties.Settings.Default, "attacksDirSearch", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.attackDirSearchCheckBox.Location = new System.Drawing.Point(3, 8);
-      this.attackDirSearchCheckBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-      this.attackDirSearchCheckBox.Name = "attackDirSearchCheckBox";
-      this.attackDirSearchCheckBox.Size = new System.Drawing.Size(62, 17);
-      this.attackDirSearchCheckBox.TabIndex = 1;
-      this.attackDirSearchCheckBox.Tag = "Whether or not to watch for, and transpile, *.atk files.";
-      this.attackDirSearchCheckBox.Text = "Attacks";
-      this.attackDirSearchCheckBox.UseVisualStyleBackColor = true;
-      this.attackDirSearchCheckBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
-      this.attackDirSearchCheckBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
-      this.attackDirSearchCheckBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
-      this.attackDirSearchCheckBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
-      // 
-      // attackDirTextBox
-      // 
-      this.attackDirTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.attackDirTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::workshop_forms.Properties.Settings.Default, "attacksDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.attackDirTextBox.Location = new System.Drawing.Point(23, 28);
-      this.attackDirTextBox.Name = "attackDirTextBox";
-      this.attackDirTextBox.ReadOnly = true;
-      this.attackDirTextBox.Size = new System.Drawing.Size(419, 20);
-      this.attackDirTextBox.TabIndex = 2;
-      this.attackDirTextBox.Tag = "Directory containing *.atk files to transpile into GML.";
-      this.attackDirTextBox.Text = global::workshop_forms.Properties.Settings.Default.attacksDir;
-      this.attackDirTextBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
-      this.attackDirTextBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
-      this.attackDirTextBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
-      this.attackDirTextBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
-      this.attackDirTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.attackDirTextBox_Validating);
-      // 
-      // spriteDirSearchCheckBox
-      // 
-      this.spriteDirSearchCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.spriteDirSearchCheckBox.AutoSize = true;
-      this.spriteDirSearchCheckBox.Checked = global::workshop_forms.Properties.Settings.Default.spritesDirSearch;
-      this.spriteDirSearchCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.optionsTable.SetColumnSpan(this.spriteDirSearchCheckBox, 2);
-      this.spriteDirSearchCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::workshop_forms.Properties.Settings.Default, "spritesDirSearch", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.spriteDirSearchCheckBox.Location = new System.Drawing.Point(3, 58);
-      this.spriteDirSearchCheckBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-      this.spriteDirSearchCheckBox.Name = "spriteDirSearchCheckBox";
-      this.spriteDirSearchCheckBox.Size = new System.Drawing.Size(58, 17);
-      this.spriteDirSearchCheckBox.TabIndex = 4;
-      this.spriteDirSearchCheckBox.Tag = "Whether or not to watch for, and convert, sprite files.";
-      this.spriteDirSearchCheckBox.Text = "Sprites";
-      this.spriteDirSearchCheckBox.UseVisualStyleBackColor = true;
-      this.spriteDirSearchCheckBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
-      this.spriteDirSearchCheckBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
-      this.spriteDirSearchCheckBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
-      this.spriteDirSearchCheckBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
-      // 
-      // spriteDirTextBox
-      // 
-      this.spriteDirTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.spriteDirTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::workshop_forms.Properties.Settings.Default, "spritesDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.spriteDirTextBox.Location = new System.Drawing.Point(23, 78);
-      this.spriteDirTextBox.Name = "spriteDirTextBox";
-      this.spriteDirTextBox.ReadOnly = true;
-      this.spriteDirTextBox.Size = new System.Drawing.Size(419, 20);
-      this.spriteDirTextBox.TabIndex = 5;
-      this.spriteDirTextBox.Tag = "Directory containing sprite files to convert into strip files.";
-      this.spriteDirTextBox.Text = global::workshop_forms.Properties.Settings.Default.spritesDir;
-      this.spriteDirTextBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
-      this.spriteDirTextBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
-      this.spriteDirTextBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
-      this.spriteDirTextBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
-      this.spriteDirTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.spriteDirTextBox_Validating);
-      // 
-      // spriteHurtboxCheckBox
-      // 
-      this.spriteHurtboxCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-      this.spriteHurtboxCheckBox.AutoSize = true;
-      this.spriteHurtboxCheckBox.Checked = global::workshop_forms.Properties.Settings.Default.spritesHurtboxGeneration;
-      this.spriteHurtboxCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.spriteHurtboxCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::workshop_forms.Properties.Settings.Default, "spritesHurtboxGeneration", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.spriteHurtboxCheckBox.Location = new System.Drawing.Point(23, 145);
-      this.spriteHurtboxCheckBox.Name = "spriteHurtboxCheckBox";
-      this.spriteHurtboxCheckBox.Size = new System.Drawing.Size(116, 17);
-      this.spriteHurtboxCheckBox.TabIndex = 7;
-      this.spriteHurtboxCheckBox.Tag = "Whether or not to generate hurtboxes by using the layer group \"hurtbox\", if it ex" +
-    "ists.";
-      this.spriteHurtboxCheckBox.Text = "Hurtbox generation";
-      this.spriteHurtboxCheckBox.UseVisualStyleBackColor = true;
-      this.spriteHurtboxCheckBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
-      this.spriteHurtboxCheckBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
-      this.spriteHurtboxCheckBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
-      this.spriteHurtboxCheckBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
-      // 
-      // characterDirTextBox
-      // 
-      this.characterDirTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.optionsTable.SetColumnSpan(this.characterDirTextBox, 2);
-      this.characterDirTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::workshop_forms.Properties.Settings.Default, "characterDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.characterDirTextBox.Location = new System.Drawing.Point(3, 235);
-      this.characterDirTextBox.Name = "characterDirTextBox";
-      this.characterDirTextBox.ReadOnly = true;
-      this.characterDirTextBox.Size = new System.Drawing.Size(439, 20);
-      this.characterDirTextBox.TabIndex = 10;
-      this.characterDirTextBox.Tag = "The target Workshop character\'s root directory. Contains init.gml, as well as the" +
-    " sprites/ and scripts/ subdirectories.";
-      this.characterDirTextBox.Text = global::workshop_forms.Properties.Settings.Default.characterDir;
-      this.characterDirTextBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
-      this.characterDirTextBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
-      this.characterDirTextBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
-      this.characterDirTextBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
-      this.characterDirTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.characterDirTextBox_Validating);
-      // 
-      // asepriteDirTextBox
-      // 
-      this.asepriteDirTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.asepriteDirTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::workshop_forms.Properties.Settings.Default, "asepriteDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.asepriteDirTextBox.Location = new System.Drawing.Point(23, 185);
-      this.asepriteDirTextBox.Name = "asepriteDirTextBox";
-      this.asepriteDirTextBox.ReadOnly = true;
-      this.asepriteDirTextBox.Size = new System.Drawing.Size(419, 20);
-      this.asepriteDirTextBox.TabIndex = 8;
-      this.asepriteDirTextBox.Tag = "Directory containing aseprite.exe. Usually C:\\Program Files\\Aseprite.";
-      this.asepriteDirTextBox.Text = global::workshop_forms.Properties.Settings.Default.asepriteDir;
-      this.asepriteDirTextBox.Enter += new System.EventHandler(this.Control_UpdateStatusBarText);
-      this.asepriteDirTextBox.Leave += new System.EventHandler(this.DeleteStatusBarText);
-      this.asepriteDirTextBox.MouseEnter += new System.EventHandler(this.Control_UpdateStatusBarText);
-      this.asepriteDirTextBox.MouseLeave += new System.EventHandler(this.DeleteStatusBarText);
-      this.asepriteDirTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.asepriteDirTextBox_Validating);
       // 
       // MainWindow
       // 
