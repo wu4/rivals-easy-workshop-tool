@@ -12,14 +12,12 @@ namespace workshop_forms
   {
     public List<string> GetStrips(string bname) =>
       (from f in Directory.GetFiles(Path.Combine(Properties.Settings.Default.characterDir, "sprites"))
-       where Path.GetFileName(f).StartsWith(bname)
-          && Regex.IsMatch(f, @"_strip\d+\.png$")
+       where Regex.IsMatch(Path.GetFileName(f), @"^" + Regex.Escape(bname) + @"_strip\d+\.png$")
        select f).ToList();
 
     public List<string> GetHurtStrips(string bname) =>
       (from f in Directory.GetFiles(Path.Combine(Properties.Settings.Default.characterDir, "sprites"))
-       where Path.GetFileName(f).StartsWith(bname)
-          && Regex.IsMatch(f, @"_hurt_strip\d+\.png$")
+       where Regex.IsMatch(Path.GetFileName(f), @"^" + Regex.Escape(bname) + @"_hurt_strip\d+\.png$")
        select f).ToList();
 
     public void RemoveOldSprites(string bname)
