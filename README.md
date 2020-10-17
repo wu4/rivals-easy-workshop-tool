@@ -10,10 +10,10 @@ Refer to [the wiki](https://github.com/wu4/rivals-easy-workshop-tool/wiki) for m
 
 ### Features
 
-* Watch (or manually check) \*.aseprite sprites directory for changes and automatically convert them into strip format
-* Automatically generate hurtboxes based on "hurtbox" layer group
+* Watch (or manually check) \*.gif or \*.aseprite sprites directory for changes and automatically convert them into strip format
+* Automatically generate hurtboxes based on "hurtbox" layer group (Aseprite only)
 * [New serialization format](https://github.com/wu4/rivals-easy-workshop-tool/wiki/Atk-File-Specification) to simplify the creation and management of attacks
 
 ### Requirements
 
-* Aseprite for sprite conversions. Not necessary if you're only using the Atk conversion feature
+* Aseprite for \*.asesprite file conversions. Not necessary if you're not making use of the feature
