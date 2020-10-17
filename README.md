@@ -7,3 +7,13 @@ The Rivals Easy Workshop Tool, or REWT for short, is a tool aimed at cutting som
 
 
 Refer to [the wiki](https://github.com/wu4/rivals-easy-workshop-tool/wiki) for more details, and the [Releases](https://github.com/wu4/rivals-easy-workshop-tool/releases) page for downloads.
+
+### Features
+
+* Watch (or manually check) \*.aseprite sprites directory for changes and automatically convert them into strip format
+* Automatically generate hurtboxes based on "hurtbox" layer group
+* [New serialization format](https://github.com/wu4/rivals-easy-workshop-tool/wiki/Atk-File-Specification) to simplify the creation and management of attacks
+
+### Requirements
+
+* Aseprite for sprite conversions. Not necessary if you're only using the Atk conversion feature
