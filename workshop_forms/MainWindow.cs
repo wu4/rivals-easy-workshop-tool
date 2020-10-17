@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Configuration;
 using System.Drawing;
 // using System.Linq;
 using System.Text;
@@ -85,6 +86,7 @@ namespace workshop_forms
       ValidateChildren();
       DeleteStatusBarText(new object(), new EventArgs());
       UpdateWatchButton(new object(), new EventArgs());
+      //ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
     }
 
     private void Tb_Validating(object sender, CancelEventArgs e)
