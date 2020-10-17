@@ -54,14 +54,20 @@ namespace workshop_forms
       attackDirSearchCheckBox.CheckedChanged += UpdateWatchButton;
 
       spriteDirSearchCheckBox.CheckedChanged += (object o, EventArgs e) =>
+      {
+        bool c = spriteDirSearchCheckBox.Checked;
         spriteDirButton.Enabled =
         spriteDirTextBox.Enabled =
+        spriteFileFormatFlowPanel.Enabled =
+        spriteFileFormatLabel.Enabled =
+          c;
+
         asepriteLabel.Enabled =
         asepriteDirButton.Enabled =
         asepriteDirTextBox.Enabled =
         spriteHurtboxCheckBox.Enabled =
-        spriteHurtboxLabel.Enabled =
-          spriteDirSearchCheckBox.Checked;
+          c && asepriteFileFormatButton.Checked;
+      };
       spriteDirSearchCheckBox.CheckedChanged += UpdateWatchButton;
 
       spriteDirTextBox.TextChanged += UpdateWatchButton;
@@ -71,14 +77,36 @@ namespace workshop_forms
       attackDirTextBox.TextChanged += UpdateWatchButton;
       attackDirTextBox.TextChanged += DeleteStatusBarText;
 
+      asepriteFileFormatButton.CheckedChanged += (object o, EventArgs e) =>
+      {
+        Properties.Settings.Default.searchForAseprites = asepriteFileFormatButton.Checked;
+
+        asepriteLabel.Enabled =
+        asepriteDirButton.Enabled =
+        asepriteDirTextBox.Enabled =
+        spriteHurtboxCheckBox.Enabled =
+          spriteDirSearchCheckBox.Checked && asepriteFileFormatButton.Checked;
+        /*
+        if (asepriteFileFormatButton.Checked) {
+          spriteHurtboxCheckBox.Tag = "Whether or not to generate hurtboxes by using the layer group \"hurtbox\", if it exists.";
+        } else {
+          spriteHurtboxCheckBox.Tag = "Whether or not to generate hurtboxes from the file \"[attack]_hurt.gif\", if it exists.";
+        }
+        */
+      };
+      asepriteFileFormatButton.CheckedChanged += UpdateWatchButton;
+
       // attackDirTextBox.Text = Properties.Settings.Default.attacksDir;
       // spriteDirTextBox.Text = Properties.Settings.Default.spritesDir;
       // characterDirTextBox.Text = Properties.Settings.Default.characterDir;
       // attackDirSearchCheckBox.Checked = Properties.Settings.Default.attacksDirSearch;
       // spriteDirSearchCheckBox.Checked = Properties.Settings.Default.spritesDirSearch;
+      asepriteFileFormatButton.Checked = Properties.Settings.Default.searchForAseprites;
+      gifFileFormatButton.Checked = !Properties.Settings.Default.searchForAseprites;
 
-      fd = new CommonOpenFileDialog();
-      fd.IsFolderPicker = true;
+      fd = new CommonOpenFileDialog {
+        IsFolderPicker = true
+      };
 
       InitWatcher(out atkWatcher, "*.atk", AtkFileChanged);
       InitWatcher(out spriteWatcher, "*.aseprite", SpriteFileChanged);
@@ -350,13 +378,21 @@ namespace workshop_forms
       List<string> atks = Properties.Settings.Default.attacksDirSearch
                         ? AtksToUpdate()
                         : new List<string>();
+
       if (sprites.Count > 0) {
         consoleTextBox.AppendText($"Converting {string.Join(", ", from s in sprites select Path.GetFileName(s))}...\n");
-        consoleTextBox.AppendText($"{Convert.Aseprite(sprites)}");
+        string output;
+        if (Properties.Settings.Default.searchForAseprites) {
+          output = Convert.Aseprite(sprites);
+        } else {
+          output = Convert.Gif(sprites);
+        }
+        consoleTextBox.AppendText(output);
       }
       if (atks.Count > 0) {
         consoleTextBox.AppendText($"Converting {string.Join(", ", from a in atks select Path.GetFileName(a))}...\n");
-        consoleTextBox.AppendText($"{Convert.Atk(atks)}");
+        string output = Convert.Atk(atks);
+        consoleTextBox.AppendText(output);
       }
       if (sprites.Count == 0 && atks.Count == 0) {
         consoleTextBox.AppendText("Nothing to do.\n");
@@ -380,9 +416,9 @@ namespace workshop_forms
       string t = attackDirTextBox.Text;
       if (!Directory.Exists(t)) {
         e.Cancel = true;
-        attackDirTextBoxError.SetError(attackLabel, "Attacks directory does not exist or is not set.");
+        attackDirTextBoxError.SetError(attackDirSearchCheckBox, "Attacks directory does not exist or is not set.");
       } else {
-        attackDirTextBoxError.SetError(attackLabel, String.Empty);
+        attackDirTextBoxError.SetError(attackDirSearchCheckBox, String.Empty);
       }
     }
 
@@ -391,9 +427,9 @@ namespace workshop_forms
       string t = spriteDirTextBox.Text;
       if (!Directory.Exists(t)) {
         e.Cancel = true;
-        spriteDirTextBoxError.SetError(spriteLabel, "Sprites directory does not exist or is not set.");
+        spriteDirTextBoxError.SetError(spriteDirSearchCheckBox, "Sprites directory does not exist or is not set.");
       } else {
-        spriteDirTextBoxError.SetError(spriteLabel, String.Empty);
+        spriteDirTextBoxError.SetError(spriteDirSearchCheckBox, String.Empty);
       }
     }
 

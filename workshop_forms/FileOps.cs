@@ -48,7 +48,9 @@ namespace workshop_forms
         }
       }
 
-      if (Properties.Settings.Default.spritesHurtboxGeneration) {
+      if (Properties.Settings.Default.spritesHurtboxGeneration
+       && Properties.Settings.Default.searchForAseprites
+       && !Convert.AsepriteIsHurtboxOrHurtboxExists(f)) {
         List<string> hurt_strips = GetHurtStrips(bname);
         if (hurt_strips.Count > 1) {
           hurt_strips.Sort(CompareFileUpdateTime);
@@ -68,10 +70,12 @@ namespace workshop_forms
     }
 
     public List<string> SpritesToUpdate() =>
-      (from f in Directory.GetFiles(Properties.Settings.Default.spritesDir, "*.aseprite")
+      (from f in Directory.GetFiles(Properties.Settings.Default.spritesDir,
+                                    Properties.Settings.Default.searchForAseprites
+                                      ? "*.aseprite"
+                                      : "*.gif")
        where CheckSprites(f) > 0
        select f).ToList();
-    
 
     public List<string> AtksToUpdate() =>
       (from f in Directory.GetFiles(Properties.Settings.Default.attacksDir, "*.atk")

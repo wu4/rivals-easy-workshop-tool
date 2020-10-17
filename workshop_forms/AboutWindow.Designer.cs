@@ -62,7 +62,7 @@
       // 
       this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(66, 189);
+      this.label1.Location = new System.Drawing.Point(66, 190);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(102, 13);
       this.label1.TabIndex = 0;
@@ -73,7 +73,7 @@
       // 
       this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(27, 162);
+      this.label2.Location = new System.Drawing.Point(27, 163);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(180, 13);
       this.label2.TabIndex = 1;
@@ -88,7 +88,7 @@
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(162, 13);
       this.label3.TabIndex = 2;
-      this.label3.Text = "Rivals Easy Workshop Tool v1.0";
+      this.label3.Text = "Rivals Easy Workshop Tool v1.1";
       this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // pictureBox1

@@ -106,5 +106,17 @@ namespace workshop_forms.Properties {
                 this["asepriteDir"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool searchForAseprites {
+            get {
+                return ((bool)(this["searchForAseprites"]));
+            }
+            set {
+                this["searchForAseprites"] = value;
+            }
+        }
     }
 }

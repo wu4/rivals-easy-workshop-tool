@@ -21,6 +21,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_73F4A76377FB739BCF951FDF871DF0FA"
+        "OwnerKey" = "8:_D0C069F35C2A2E1E26BD1A02BAEFFC75"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_73F4A76377FB739BCF951FDF871DF0FA"
+        "OwnerKey" = "8:_CFB817958E544F46AF8068A9C4CA0247"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_757A3468C577EF651EC4A495C03609D4"
         "OwnerKey" = "8:_CFB817958E544F46AF8068A9C4CA0247"
         "MsmSig" = "8:_UNDEFINED"
@@ -51,6 +63,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D0C069F35C2A2E1E26BD1A02BAEFFC75"
+        "OwnerKey" = "8:_CFB817958E544F46AF8068A9C4CA0247"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D6E886F0A3FA3BE1067C62A025024D09"
         "OwnerKey" = "8:_CFB817958E544F46AF8068A9C4CA0247"
         "MsmSig" = "8:_UNDEFINED"
@@ -64,13 +82,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E338AF91E763B713AF07096BEA622BFE"
+        "OwnerKey" = "8:_CFB817958E544F46AF8068A9C4CA0247"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CFB817958E544F46AF8068A9C4CA0247"
+        "OwnerKey" = "8:_D0C069F35C2A2E1E26BD1A02BAEFFC75"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_73F4A76377FB739BCF951FDF871DF0FA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -97,6 +121,12 @@
         "OwnerKey" = "8:_B07108B9CED3C9AB997BA0127B704677"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E338AF91E763B713AF07096BEA622BFE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -115,6 +145,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -131,6 +169,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -174,6 +228,37 @@
                     }
                 }
             "SourcePath" = "8:MoonSharp.Interpreter.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_1A198EE584A34CFC9ACA5BDA8277F363"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_73F4A76377FB739BCF951FDF871DF0FA"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Magick.NET.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_73F4A76377FB739BCF951FDF871DF0FA"
+                    {
+                    "Name" = "8:Magick.NET.Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Magick.NET.Core.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_1A198EE584A34CFC9ACA5BDA8277F363"
@@ -256,6 +341,37 @@
                     }
                 }
             "SourcePath" = "8:Costura.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_1A198EE584A34CFC9ACA5BDA8277F363"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D0C069F35C2A2E1E26BD1A02BAEFFC75"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Magick.NET-Q16-AnyCPU, Version=7.22.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_D0C069F35C2A2E1E26BD1A02BAEFFC75"
+                    {
+                    "Name" = "8:Magick.NET-Q16-AnyCPU.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Magick.NET-Q16-AnyCPU.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_1A198EE584A34CFC9ACA5BDA8277F363"
@@ -391,15 +507,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Rivals Easy Workshop Tool"
-        "ProductCode" = "8:{43B9A924-FFA7-4AA4-932B-157B271141BF}"
-        "PackageCode" = "8:{E7BC1F07-DEC1-490A-B4AB-1C2C959D5C08}"
+        "ProductCode" = "8:{01A01750-BCE9-490B-A1B9-99E8AB70BEFA}"
+        "PackageCode" = "8:{46B5062F-B250-4238-B360-68863702DF02}"
         "UpgradeCode" = "8:{162C470C-835B-4DBA-9BB6-F6A25E36B9E7}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.1.0"
         "Manufacturer" = "8:wuffie"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
