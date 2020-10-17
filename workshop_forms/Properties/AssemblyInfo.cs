@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("workshop_forms")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Rivals Easy Workshop Tool")]
+[assembly: AssemblyDescription("REWT")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("workshop_forms")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCompany("wuffie")]
+[assembly: AssemblyProduct("Rivals Easy Workshop Tool")]
+[assembly: AssemblyCopyright("Copyright © wuffie 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
