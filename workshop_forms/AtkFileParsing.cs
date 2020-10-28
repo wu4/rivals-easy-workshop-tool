@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using MoonSharp.Interpreter;
@@ -161,6 +162,9 @@ namespace workshop_forms
       private string FormatException(string message) =>
         $"in {filename}\nat line {lineNum}: {message}\n{lineOrig}\n{new string(' ', Math.Max(lineCur, 0))}^\n";
 
+      // ensure decimal output to always be periods regardless of locale
+      private static IFormatProvider enUSFormat = new CultureInfo("en-US");
+
       public Attack Parse()
       {
         curHbx = new Hitbox();
@@ -256,7 +260,7 @@ namespace workshop_forms
                   string val_str;
                   switch (val.Type) {
                     case DataType.Boolean: val_str = val.Boolean ? "true" : "false"; break;
-                    case DataType.Number:  val_str = val.CastToString(); break;
+                    case DataType.Number:  val_str = val.Number.ToString(enUSFormat); break;
                     case DataType.String:  val_str = val.String; break;
                     default: throw new Exception($"unsupported data type {val.Type}");
                   }

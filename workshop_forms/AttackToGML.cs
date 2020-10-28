@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Globalization;
 using System.Threading.Tasks;
 
 namespace workshop_forms
@@ -27,14 +26,11 @@ namespace workshop_forms
       const string G_HITBOX =        "set_hitbox_value({0}, {1}, {2}, {3});\n";
       const string G_HITBOX_SFX =    "set_hitbox_value({0}, {1}, {2}, asset_get(\"{3}\"));\n";
 
-      // ensure decimal output to always be periods regardless of locale
-      private static IFormatProvider enUSFormat = new CultureInfo("en-US");
-
       private string AsGML(string vtype, params object[] args)
       {
         var argsL = args.ToList();
         argsL.Insert(0, atk_name);
-        return string.Format(enUSFormat, vtype, argsL.ToArray());
+        return string.Format(vtype, argsL.ToArray());
       }
 
       private void IterateHitbox(AtkFileParsing.Hitbox h)
