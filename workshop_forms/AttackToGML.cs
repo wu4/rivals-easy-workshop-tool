@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace workshop_forms
@@ -26,11 +27,14 @@ namespace workshop_forms
       const string G_HITBOX =        "set_hitbox_value({0}, {1}, {2}, {3});\n";
       const string G_HITBOX_SFX =    "set_hitbox_value({0}, {1}, {2}, asset_get(\"{3}\"));\n";
 
+      // ensure decimal output to always be periods regardless of locale
+      private static IFormatProvider enUSFormat = new CultureInfo("en-US");
+
       private string AsGML(string vtype, params object[] args)
       {
         var argsL = args.ToList();
         argsL.Insert(0, atk_name);
-        return string.Format(vtype, argsL.ToArray());
+        return string.Format(enUSFormat, vtype, argsL.ToArray());
       }
 
       private void IterateHitbox(AtkFileParsing.Hitbox h)
@@ -78,9 +82,9 @@ namespace workshop_forms
           }
           atk_vals.Append(AsGML(vtype, entry.Key, entry.Value));
         }
-        if (!atk.Values.ContainsKey("AG_SPRITE")) atk_vals.Append(AsGML(G_ATTACK_SPRITE, "AG_SPRITE", atk_name_orig));
+        if (!atk.Values.ContainsKey("AG_SPRITE"))         atk_vals.Append(AsGML(G_ATTACK_SPRITE, "AG_SPRITE",         atk_name_orig));
         if (!atk.Values.ContainsKey("AG_HURTBOX_SPRITE")) atk_vals.Append(AsGML(G_ATTACK_SPRITE, "AG_HURTBOX_SPRITE", $"{atk_name_orig}_hurt"));
-        if (!atk.Values.ContainsKey("AG_NUM_WINDOWS")) atk_vals.Append(AsGML(G_ATTACK, "AG_NUM_WINDOWS", win_count.ToString()));
+        if (!atk.Values.ContainsKey("AG_NUM_WINDOWS"))    atk_vals.Append(AsGML(G_ATTACK,        "AG_NUM_WINDOWS",    win_count.ToString()));
         atk_vals.Append($"set_num_hitboxes({atk_name}, {hbx_count});\n");
 
         return atk_vals.Append(
